@@ -65,6 +65,25 @@
             }
         }
 
+	 // adds a new key to local storage
+		function setKey() {
+		    var key = parseInt(($("#quantity").val() * $("#volume").val()) / $("#members").val(),10);
+		    var value = parseInt(-(key * ($("#aya").val()/100)) + key,10);
+			
+				water= Math.round((key - value) / 10);
+		        
+				document.getElementById("result").innerHTML="You have a calorie of: "+ key + ",  to lessen your calorie into " + value + ",   you must drink " + water + "   glasses of cold water";
+		
+
+		    if (Modernizr.localstorage) {
+		        localStorage.setItem(key, value);
+		    }
+
+
+		    showKeys();
+		}
+
+
  	function clearLocalKeys() {
             clearKeys("local");
         }
