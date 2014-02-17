@@ -1,0 +1,25 @@
+body {
+	background: #EEE;
+	margin: 0 auto;
+	width: 960px;
+}
+
+div 
+{
+	margin-bottom: 10px
+}
+
+div.float {
+	width: 400px;
+	float: left;
+}
+
+table 
+{
+	width: 350px;
+}
+
+td 
+{
+	width: 100px;
+}
