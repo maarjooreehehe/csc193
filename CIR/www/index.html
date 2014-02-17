@@ -275,6 +275,61 @@ text-decoration:none;
 			<h1 id="result"></h1>
 			<a id="popupBoxClose">Close</a>	
 		</div>
+
+<!--Bar Chart-->
+
+
+		<div id="barChart" class="myChart"></div>
+			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
+			
+			
+			<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
+			<input type="text" id="quantity" class="numberinput" placeholder="Beer Quantity"  data-mini="true"/>
+			
+			<select id="volume" data-mini="true"/>
+			<option value=44>100ml</option>
+			<option value=218>500ml</option>
+			<option value=436>1L</option>
+			</select>
+				
+			<select id="aya" data-mini="true"/>
+			<option value=5>5%</option>
+			<option value=10>10%</option>
+			<option value=15>15%</option>
+			<option value=20>20%</option>
+			</select>
+			
+		</section>
+		<input type="submit" data-theme="b" value="SAVE" onclick="setKey()" />
+
+		
+	</div>
+	
+	
+	
+	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
+		<header data-role="header" data-position="fixed">
+		<a href="index.html" rel="external" data-icon="home">HOME</a>
+			<h1>DATA TABLE</h1>
+		<a href="#pageDataGraph" data-icon="next" data-theme="b">NEXT</a>
+		</header>
+		 <table id="localTable" border="1">
+            <thead>
+                <tr>
+                    <th>Old Calorie</th>
+                    <th>New Calorie</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+			<input type="submit" value="Clear Keys" onclick="clearLocalKeys()" />
+	
+        </table>
+<input type="button" value="Update Chart" onClick="window.location.reload()">
+
+        </div>
+	
 			
 
 		
