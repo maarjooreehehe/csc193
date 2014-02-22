@@ -16,7 +16,7 @@ div.float {
 
 table 
 {
-	width: 100px;
+	width: 350px;
 }
 
 td 

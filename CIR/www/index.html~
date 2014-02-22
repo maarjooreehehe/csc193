@@ -69,15 +69,16 @@
 		function setKey() {
 		    var key = parseInt(($("#quantity").val() * $("#volume").val()) / $("#members").val(),10);
 		    var value = parseInt(-(key * ($("#aya").val()/100)) + key,10);
+			var myDate=new Date();
 			
 				water= Math.round((key - value) / 10);
 				waterPerweek = water * 7;
 		       
-				document.getElementById("result").innerHTML="You have a calorie of: "+ key + ",  to lessen your calorie into " + value + ",   you must drink " + water + "   glasses of cold water; you must be able to drink " + waterPerweek + " glasses of cold water per week";
+				document.getElementById("result").innerHTML="You have a calorie of: "+ key + ",  to lessen your calorie into " + value + ",   you must drink " + water + "   glasses of cold water; you must be able to drink " + waterPerweek + " glasses of cold water per week<p>" + myDate </p> ;
 		
 
 		    if (Modernizr.localstorage) {
-		        localStorage.setItem(key, value);
+		        localStorage.setItem(key, value, myDate);
 		    }
 
 
@@ -280,9 +281,9 @@ text-decoration:none;
 <!--Bar Chart-->
 
 
-		<div id="barChart" class="myChart"></div>
+		<div id="barChart" class="myChart"; height: 5px; width:5px></div>
 			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
-			
+			 
 			
 			Members:<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
 			Quantity:<input type="text" id="quantity" class="numberinput" placeholder="Beer Quantity"  data-mini="true"/>

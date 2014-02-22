@@ -284,8 +284,8 @@ text-decoration:none;
 			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
 			
 			
-			Members:<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
-			Quantity:<input type="text" id="quantity" class="numberinput" placeholder="Beer Quantity"  data-mini="true"/>
+			<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
+			<input type="text" id="quantity" class="numberinput" placeholder="Beer Quantity"  data-mini="true"/>
 			
 			<select id="volume" data-mini="true"/>
 			<option value=44>100ml</option>
