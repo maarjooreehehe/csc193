@@ -388,19 +388,19 @@ text-decoration:none;
             </thead>
             <tbody>
             </tbody>
-			<a href="#confirmClear" data-role="button" >Clear Entries</a>
+			<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
 	
         </table>
 	<input type="button" value="Update Chart" onClick="window.location.reload()">
 
         </div>
 	
-	<div id="confirmClear" data-role="page"  data-dialog="true"  class="ui-content" >
+	<div id="confirmClear" data-role="page" >
 	 
 		 <div data-role="header">
 		    <h1>Confirm</h1>
 		  </div>
-	   	 <h1>Are you sure you want to clear all contents?</h1>   
+	   	 <h1 style="color:white;">Are you sure you want to clear all contents?</h1>   
 	  	<h2><a href="#localStorageDiv" data-role="button" data-icon="check" onclick="clearLocalKeys()">Yes</a></h2>
 	    	<h2><a href="#localStorageDiv" data-role="button" data-icon="delete">Cancel</a></h2>
 		  
