@@ -16,7 +16,8 @@
 	  <script src="scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
 	  <script src="scripts/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
 	  <script src="scripts/modernizr-1.6.min.js" type="text/javascript"></script>
-  
+	  
+	 
 	  <style type="text/css">
 		.myChart {
 			width: 300px;
@@ -74,10 +75,11 @@
 				water= Math.round((key - value) / 10);
 				waterPerweek = water * 7;
 		       
-				document.getElementById("result").innerHTML="You have a calorie of: "+ key + ",  to lessen your calorie into " + value + ",   you must drink " + water + "   glasses of cold water; you must be able to drink " + waterPerweek + " glasses of cold water per week<p>" + myDate </p> ;
+				document.getElementById("result").innerHTML="You have a calorie of: "+ key + ",  to lessen your calorie into " + value + ",   you must drink " + water + "   glasses of cold water; you must be able to drink " + waterPerweek + " glasses of cold water per week<p></p>" + myDate  ;
 		
 
 		    if (Modernizr.localstorage) {
+				alert("Save");
 		        localStorage.setItem(key, value, myDate);
 		    }
 
@@ -252,22 +254,33 @@ text-decoration:none;
 		
 				</header>
 				<section data-role="content">
-					<ul data-role="listview" data-inset="true" data-shadow="true">
+					<!-- <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#pageBarChart">Data Input</a></li>
-						<li><a href="#localStorageDiv">Data Table</a></li>
-						<li><a href="#pageDataGraph">Data Graph</a></li>
+						<li><a href="#pageBarChart" data-transition="pop">Data Input</a></li>
+						<li><a href="#localStorageDiv" data-transition="pop">Data Table</a></li>
+						<li><a href="#pageDataGraph" data-transition="pop">Data Graph</a></li>
 				
-					</ul>
+					</ul> -->
+					
+					<center><img src="img/logoo.png" width="250px" height="350px"/></center>
+
+					<center>
+						<a href="#pageBarChart" data-transition="pop"><img src="img/data_input.png" width="50px" height="70px"/></a>
+						<a href="#localStorageDiv" data-transition="pop"><img src="img/logo.png" width="50px" height="70px"/></a>
+						<a href="#"><img src="img/did_you_know.png" width="50px" height="70px"/></a>
+						<a href="#"><img src="img/about_app.png" width="50px" height="70px"/></a>
+					</center>
 				</section>
-		
+	
 			</div>
+			
+
 
 		<div id="pageBarChart" data-role="page" data-rockncoder-jspage="manageBarChart">
 				<header data-role="header" data-position="fixed">
-				<a href="index.html" rel="external" data-icon="home">HOME</a>
+				<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
 					<h1>DATA INPUT</h1>
-				<a href="#localStorageDiv" data-icon="next" data-theme="b">NEXT</a>
+				<a href="#localStorageDiv" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
 				</header>
 	
 		<a id="popupBoxOpen">Calorie Intake Reminder</a>		
@@ -311,9 +324,9 @@ text-decoration:none;
 	
 	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
 		<header data-role="header" data-position="fixed">
-		<a href="index.html" rel="external" data-icon="home">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
 			<h1>DATA TABLE</h1>
-		<a href="#pageDataGraph" data-icon="next" data-theme="b">NEXT</a>
+		<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
 		</header>
 		 <table id="localTable" border="1">
             <thead>

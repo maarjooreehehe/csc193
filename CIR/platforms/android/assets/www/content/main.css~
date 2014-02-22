@@ -1,7 +1,7 @@
 body {
 	background: #EEE;
 	margin: 0 auto;
-	width: 960px;
+	width: 90px;
 }
 
 div 
@@ -10,13 +10,13 @@ div
 }
 
 div.float {
-	width: 400px;
+	width: 90px;
 	float: left;
 }
 
 table 
 {
-	width: 350px;
+	width: 100px;
 }
 
 td 
