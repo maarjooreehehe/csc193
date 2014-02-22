@@ -16,7 +16,8 @@
 	  <script src="scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
 	  <script src="scripts/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
 	  <script src="scripts/modernizr-1.6.min.js" type="text/javascript"></script>
-  
+	  
+	 
 	  <style type="text/css">
 		.myChart {
 			width: 300px;
@@ -78,6 +79,7 @@
 		
 
 		    if (Modernizr.localstorage) {
+				alert("Save");
 		        localStorage.setItem(key, value, myDate);
 		    }
 
@@ -254,20 +256,22 @@ text-decoration:none;
 				<section data-role="content">
 					<ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#pageBarChart">Data Input</a></li>
-						<li><a href="#localStorageDiv">Data Table</a></li>
-						<li><a href="#pageDataGraph">Data Graph</a></li>
+						<li><a href="#pageBarChart" data-transition="pop">Data Input</a></li>
+						<li><a href="#localStorageDiv" data-transition="pop">Data Table</a></li>
+						<li><a href="#pageDataGraph" data-transition="pop">Data Graph</a></li>
 				
 					</ul>
 				</section>
-		
+	
 			</div>
+			
+
 
 		<div id="pageBarChart" data-role="page" data-rockncoder-jspage="manageBarChart">
 				<header data-role="header" data-position="fixed">
-				<a href="index.html" rel="external" data-icon="home">HOME</a>
+				<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
 					<h1>DATA INPUT</h1>
-				<a href="#localStorageDiv" data-icon="next" data-theme="b">NEXT</a>
+				<a href="#localStorageDiv" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
 				</header>
 	
 		<a id="popupBoxOpen">Calorie Intake Reminder</a>		
@@ -311,9 +315,9 @@ text-decoration:none;
 	
 	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
 		<header data-role="header" data-position="fixed">
-		<a href="index.html" rel="external" data-icon="home">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
 			<h1>DATA TABLE</h1>
-		<a href="#pageDataGraph" data-icon="next" data-theme="b">NEXT</a>
+		<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
 		</header>
 		 <table id="localTable" border="1">
             <thead>
