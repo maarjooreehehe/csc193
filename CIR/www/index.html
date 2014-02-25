@@ -66,7 +66,6 @@
             if (Modernizr.localstorage) {
                 showStorageKeys("local", "#localTable");
             }
-
         }
 
         // show the keys currently held in the specified type of storage in the specified table
@@ -90,25 +89,51 @@
         }
 
 	 // adds a new key to local storage
-		function setKey() {
-		    var key = parseInt(($("#quantity").val() * $("#volume").val()) / $("#members").val(),10);
-		    var value = parseInt(-(key * ($("#aya").val()/100)) + key,10);
+	  	function setKey() {
+			members = $("#members").val();
+			quantity = $("#quantity").val();
+			volumeUnit = $("#volumeUnit").val();
+			calorieVolumeUnit = $("#calorieVolumeUnit").val();
+			caloriePerVolume = $("#caloriePerVolume").val();
+			percentage = $("#percentage").val();
+			
+			if(volumeUnit==2){
+				var volume=( $("#volume").val() * 1000);
+			}
+			else if(volumeUnit==3){
+				volume=($("#volume").val()  * 30);
+			}
+			else{
+				volume= $("#volume").val();
+				
+			}
+			
+			if(calorieVolumeUnit==2){
+				calorieMl = ($("#calorieMl").val() * 1000);
+			}
+			else if(calorieVolumeUnit==3){
+				calorieMl=($("#calorieMl").val() * 30);
+			}
+			else{
+				calorieMl=$("#calorieMl").val();
+			}
+			
+			totalCalorie = parseInt( ((caloriePerVolume/calorieMl) * ((quantity*volume)/members)),10 );
+			burntCalorie = parseInt( (totalCalorie - ((totalCalorie*percentage)/100)) ,10);
+			water = Math.round(((((totalCalorie-burntCalorie)*1000)/33.5)/240));
+			
+			waterPerWeek = water * 7;
+			
+			var key = totalCalorie;
+			var value = burntCalorie;
 			var myDate=new Date();
 			
-				water= Math.round((key - value) / 10);
-				waterPerweek = water * 7;
-		       
-				document.getElementById("result").innerHTML="You have a calorie of: "+ key + ",  to lessen your calorie into " + value + ",   you must drink " + water + "   glasses of cold water; you must be able to drink " + waterPerweek + " glasses of cold water per week<p></p>" + myDate  ;
+			document.getElementById("result").innerHTML="You have a calorie of: "+ totalCalorie + ",  to lessen your calorie into " + burntCalorie + ",   you must drink " + water + "   glasses of cold water; " + waterPerWeek + " glasses of cold water per week<p></p>" + myDate;
 		
-
 		    if (Modernizr.localstorage) {
-		
-		        localStorage.setItem(key, value, myDate);
+		    localStorage.setItem(key, value);
 			drawToast("Item saved");
 		    }
-
-			
-
 		    showKeys();
 		}
 
@@ -155,13 +180,11 @@
         function removeItem(type, key) {
             // get the specified local storage
             var storage = window[type + 'Storage'];
-
             storage.removeItem(key);
-
             showKeys();
         }
     
-      
+     
     </script>
 
 <!--POP UP BOX HERE--->
@@ -287,7 +310,8 @@ text-decoration:none;
              });
          }
      </script>
-  
+	 
+
  </head>
 
     <body>
@@ -300,33 +324,20 @@ text-decoration:none;
 		
 				</header>
 				<section data-role="content">
-					<!-- <ul data-role="listview" data-inset="true" data-shadow="true">
+					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
 						<li><a href="#pageBarChart" data-transition="pop">Data Input</a></li>
 						<li><a href="#localStorageDiv" data-transition="pop">Data Table</a></li>
 						<li><a href="#pageDataGraph" data-transition="pop">Data Graph</a></li>
 				
-					</ul> -->
-
-
-
-					
-
-					<center><img src="img/logoo.png" width="250px" height="350px"/></center>
-
-					<center>
-						<a href="#pageBarChart" data-transition="pop"><img src="img/data_input.png" width="50px" height="70px"/></a>
-						<a href="#localStorageDiv" data-transition="pop"><img src="img/logo.png" width="50px" height="70px"/></a>
-						<a href="#"><img src="img/did_you_know.png" width="55px" height="70px"/></a>
-						<a href="#"><img src="img/about_app.png" width="55px" height="70px"/></a>
-					</center>
+					</ul> 
 				</section>
 	
 			</div>
 			
-
-
+	
 		<div id="pageBarChart" data-role="page" data-rockncoder-jspage="manageBarChart">
+		
 				<header data-role="header" data-position="fixed">
 				<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
 					<h1>DATA INPUT</h1>
@@ -337,36 +348,44 @@ text-decoration:none;
 	
 				<section data-role="content">
 				<div id="popup_box">	<!-- OUR PopupBox DIV-->
-			<h1 id="result"></h1>
-			<a id="popupBoxClose">Close</a>	
-		</div>
-
-<!--Bar Chart-->
-
+					<h1 id="result"></h1>
+					<a id="popupBoxClose">Close</a>	
+				</div>
 
 		<div id="barChart" class="myChart"; height: 5px; width:5px></div>
 			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
 			 
 			
 			Members:<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
-			Quantity:<input type="text" id="quantity" class="numberinput" placeholder="Beer Quantity"  data-mini="true"/>
+			Quantity:<input type="text" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true"/>
+
+			Volume:<input type="text" id="volume" class="numberinput" placeholder="volume"  data-mini="true"/>
 			
-			<select id="volume" data-mini="true"/>
-			<option value=44>100ml</option>
-			<option value=218>500ml</option>
-			<option value=436>1L</option>
+			<select id="volumeUnit" data-mini="true"/>
+			<option value=1>ml</option>
+			<option value=2>L</option>
+			<option value=3>oz</option>
 			</select>
-				
-			<select id="aya" data-mini="true"/>
+			
+			Calorie per <input type="text" id="calorieMl" class="numberinput" placeholder=""  data-mini="true"/>
+			<select id="calorieVolumeUnit" data-mini="true"/>
+			<option value=1>ml</option>
+			<option value=2>L</option>
+			<option value=3>oz</option>
+			</select>
+			<input type="text" id="caloriePerVolume" class="numberinput" placeholder="calorie per volume"  data-mini="true"/>
+			
+			
+			Percentage to burn:<select id="percentage" data-mini="true"/>
 			<option value=5>5%</option>
 			<option value=10>10%</option>
 			<option value=15>15%</option>
 			<option value=20>20%</option>
 			</select>
-			
-		</section>
-		<input type="submit" data-theme="b" value="SAVE" onclick="setKey()" />
+			<input type="submit" data-theme="b" value="SAVE" onclick="setKey()" />
 
+		
+		</section>
 		
 	</div>
 	
@@ -378,6 +397,8 @@ text-decoration:none;
 			<h1>DATA TABLE</h1>
 		<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
 		</header>
+		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
+	
 		 <table id="localTable" border="1">
             <thead>
                 <tr>
@@ -388,8 +409,7 @@ text-decoration:none;
             </thead>
             <tbody>
             </tbody>
-			<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
-	
+			
         </table>
 	<input type="button" value="Update Chart" onClick="window.location.reload()">
 

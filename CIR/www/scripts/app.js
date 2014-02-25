@@ -29,9 +29,40 @@ RocknCoder.Pages.manageBarChart = function () {
 			$("#refreshBarChart").unbind('click');
 		},
 		updateChart= function(){
-			var barA = parseInt(($("#quantity").val() * $("#volume").val()) / $("#members").val(),10),
-				barC = parseInt($("#aya").val(),10),
-				barB = -(barA * (barC / 100)) + barA;
+		
+		members = $("#members").val();
+			quantity = $("#quantity").val();
+			volumeUnit = $("#volumeUnit").val();
+			calorieVolumeUnit = $("#calorieVolumeUnit").val();
+			caloriePerVolume = $("#caloriePerVolume").val();
+			percentage = $("#percentage").val();
+			
+			if(volumeUnit==2){
+				var volume=( $("#volume").val() * 1000);
+			}
+			else if(volumeUnit==3){
+				volume=($("#volume").val()  * 30);
+			}
+			else{
+				volume= $("#volume").val();
+				
+			}
+			
+			if(calorieVolumeUnit==2){
+				calorieMl = ($("#calorieMl").val() * 1000);
+			}
+			else if(calorieVolumeUnit==3){
+				calorieMl=($("#calorieMl").val() * 30);
+			}
+			else{
+				calorieMl=$("#calorieMl").val();
+			}
+			
+			totalCalorie = parseInt( ((caloriePerVolume/calorieMl) * ((quantity*volume)/members)),10 );
+			burntCalorie = parseInt( (totalCalorie - ((totalCalorie*percentage)/100)) ,10);
+			
+			var barA = parseInt( ((caloriePerVolume/calorieMl) * ((quantity*volume)/members)),10 ),
+				barB = parseInt( (totalCalorie - ((totalCalorie*percentage)/100)) ,10);
 
 
 			showChart(barA, barB);
