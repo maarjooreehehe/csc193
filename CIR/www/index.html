@@ -326,7 +326,8 @@ text-decoration:none;
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#pageBarChart" data-transition="pop">Data Input</a></li>
+						<li><a href="#calorieIntake" data-transition="pop">Calorie Intake</a></li>
+						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
 						<li><a href="#localStorageDiv" data-transition="pop">Data Table</a></li>
 						<li><a href="#pageDataGraph" data-transition="pop">Data Graph</a></li>
 				
@@ -335,8 +336,23 @@ text-decoration:none;
 	
 			</div>
 			
+		<!--View Records Pop-up-->
+		<div id="viewRecords" data-role="page">
+				 <div data-role="header">
+					<h1>View Records</h1>
+				  </div>
+				 <h1 style="color:white;">Display:</h1>   
+				<h2><a href="#localStorageDiv" data-role="button">Table</a></h2>
+					<h2><a href="#localStorageDiv" data-role="button">Graph</a></h2>
+				  
+				<div data-role="footer">
+				<p></p>
+			  </div>
+
+		</div>
+			
 	
-		<div id="pageBarChart" data-role="page" data-rockncoder-jspage="manageBarChart">
+		<div id="calorieIntake" data-role="page" data-rockncoder-jspage="manageBarChart">
 		
 				<header data-role="header" data-position="fixed">
 				<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
@@ -355,8 +371,9 @@ text-decoration:none;
 		<div id="barChart" class="myChart"; height: 5px; width:5px></div>
 			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
 			 
+			<label for="members">Members (required):</label>
+			<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
 			
-			Members:<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
 			Quantity:<input type="text" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true"/>
 
 			Volume:<input type="text" id="volume" class="numberinput" placeholder="volume"  data-mini="true"/>
