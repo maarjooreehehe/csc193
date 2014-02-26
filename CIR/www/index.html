@@ -371,12 +371,14 @@ text-decoration:none;
 		<div id="barChart" class="myChart"; height: 5px; width:5px></div>
 			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
 			 
-			<label for="members">Members (required):</label>
+			<label for="members">Members:</label>
 			<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
 			
-			Quantity:<input type="text" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true"/>
+			<label for="members">Quantity:</label>
+			<input type="text" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true"/>
 
-			Volume:<input type="text" id="volume" class="numberinput" placeholder="volume"  data-mini="true"/>
+			<label for="members">Volume:</label>
+			<input type="text" id="volume" class="numberinput" placeholder="volume"  data-mini="true"/>
 			
 			<select id="volumeUnit" data-mini="true"/>
 			<option value=1>ml</option>
@@ -384,16 +386,18 @@ text-decoration:none;
 			<option value=3>oz</option>
 			</select>
 			
-			Calorie per <input type="text" id="calorieMl" class="numberinput" placeholder=""  data-mini="true"/>
+			<label for="members">Calorie per volume:</label>
+			<input type="text" id="caloriePerVolume" class="numberinput" placeholder="calorie per volume"  data-mini="true"/>
+			<input type="text" id="calorieMl" class="numberinput" placeholder=""  data-mini="true"/>
 			<select id="calorieVolumeUnit" data-mini="true"/>
 			<option value=1>ml</option>
 			<option value=2>L</option>
 			<option value=3>oz</option>
 			</select>
-			<input type="text" id="caloriePerVolume" class="numberinput" placeholder="calorie per volume"  data-mini="true"/>
 			
 			
-			Percentage to burn:<select id="percentage" data-mini="true"/>
+			<label for="members">Percentage:</label>
+			<select id="percentage" data-mini="true"/>
 			<option value=5>5%</option>
 			<option value=10>10%</option>
 			<option value=15>15%</option>
