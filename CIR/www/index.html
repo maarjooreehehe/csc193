@@ -17,13 +17,16 @@
 	  <script src="scripts/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
 	  <script src="scripts/modernizr-1.6.min.js" type="text/javascript"></script>
 	  
-	 
+
+
+
 	  <style type="text/css">
 		.myChart {
 			width: 300px;
 			height: 200px;
 		}
-
+		
+		
 		#toast{
 		position: fixed;
 		bottom: 200px;
@@ -46,11 +49,72 @@
 		-o-transition: opacity 0.5s ease-out; /* Opera 10.5+ */
 		transition: opacity 0.5s ease-out;
 		}
+	
+		/* for the background image */
+
+		#bg { position: fixed; top: 0; left: 0; }
+		.bgwidth { width: 100%; }
+		.bgheight { height: 100%; }
+		#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+		android:src="@drawable/bg.jpg"
+		android:scaleType = "centerCrop"
+		    
+		
+		/* for the footer */
+		
+		#footer{width: 100%;
+		background-color: #fb7b4b;
+		opacity: 0.8; // or use rgba() where a opacity.
+		}
+
+		.footer:hover{
+		background-color: #ed551c;
+		opacity: 1.8;
+		}
+		
+		.footer:active{
+		color: #0f0;
+		}
+
 	</style>
 
         <title>CIR</title>
 
 	<script type="text/javascript">
+	
+	// for the bg image
+	
+	$(window).load(function() {    
+
+	var theWindow        = $(window),
+	    $bg              = $("#bg"),
+	    aspectRatio      = $bg.width() / $bg.height();
+	    			    		
+	function resizeBg() {
+		
+		if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
+		    $bg
+		    	.removeClass()
+		    	.addClass('bgheight');
+		} else {
+		    $bg
+		    	.removeClass()
+		    	.addClass('bgwidth');
+		}
+					
+	}
+	                   			
+	theWindow.resize(resizeBg).trigger("resize");
+
+	});
 
         $(document).ready(function () {
            
@@ -318,6 +382,7 @@ text-decoration:none;
 
 		
 		<div id="page1" data-role="page">
+<<<<<<< HEAD
 				<header data-role="header" data-position="fixed">
 		
 					<h1>CALORIE INTAKE REMINDER</h1>
@@ -331,24 +396,42 @@ text-decoration:none;
 						<li><a href="#localStorageDiv" data-transition="pop">Data Table</a></li>
 						<li><a href="#pageDataGraph" data-transition="pop">Data Graph</a></li>
 						<li><a href="#manual" data-transition="pop">Manual</a></li>
+=======
+>>>>>>> 3e8bc8d09035fe6899a02e456b1c90a0ff02da07
 				
-					</ul> 
+				<img src="img/bg.jpg" id="bg" alt="" />
+				
+				<section data-role="content">
 				</section>
-	
-			</div>
+				
+				<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#pageBarChart" data-transition="pop" data-icon="edit">Data Input</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+				</div>
+			
+		</div>
+			
 			
 		<!--View Records Pop-up-->
 		<div id="viewRecords" data-role="page">
 				 <div data-role="header">
 					<h1>View Records</h1>
 				  </div>
-				 <h1 style="color:white;">Display:</h1>   
+				<h1 style="color:white;">Display:</h1>   
 				<h2><a href="#localStorageDiv" data-role="button">Table</a></h2>
-					<h2><a href="#localStorageDiv" data-role="button">Graph</a></h2>
+				<h2><a href="#localStorageDiv" data-role="button">Graph</a></h2>
 				  
 				<div data-role="footer">
-				<p></p>
-			  </div>
+					<p></p>
+				</div>
 
 		</div>
 			
@@ -368,10 +451,23 @@ text-decoration:none;
 					<h1 id="result"></h1>
 					<a id="popupBoxClose">Close</a>	
 				</div>
+		</div>
 
-		<div id="barChart" class="myChart"; height: 5px; width:5px></div>
+		<div id="pageBarChart" data-role="page" data-rockncoder-jspage="manageBarChart">
+
+
+
+
+
+			<header data-role="header" data-position="fixed">
+				<a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a>
+				<h1>DATA TABLE</h1>
+				<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
+			</header>
+<!--			
+			<div id="barChart" class="myChart"; height: 5px; width:5px></div>
 			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
-			 
+-->			 
 			<label for="members">Members:</label>
 			<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
 			
@@ -405,10 +501,21 @@ text-decoration:none;
 			<option value=20>20%</option>
 			</select>
 			<input type="submit" data-theme="b" value="SAVE" onclick="setKey()" />
-
 		
-		</section>
-		
+			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#pageBarChart" class="ui-state-persist ui-btn-active"  data-transition="pop" data-icon="edit">Data Input</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+				</div>
+		</div>
+			
 	</div>
 	
 	
