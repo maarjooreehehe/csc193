@@ -8,6 +8,12 @@
         PhoneGap Team
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
+
+<!-- for Android -->
+<feature name="SocialSharing">
+  <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+</feature>
+
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
