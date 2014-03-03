@@ -578,20 +578,20 @@ text-decoration:none;
 			       
 		  	 </div> 
 		
-				
 			
 		</div>
 		
+		
 			
 		<div id = "intakeCal" data-role = "page">
-
+			
 			<div id="header" style="background-color:#FFA500;">
 			<center><h1 style="margin-bottom:0;">How to use?</h1></center>
 			</div>
 			
 
 			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
-			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel="dialog">Calorie intake calculation</a></h2><br>
+			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel="dialog">New Record</a></h2><br>
 			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel="dialog">View Records</a></h2><br>
 			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel="dialog">Data Graph</a></h2></br>	
 			       
@@ -605,17 +605,28 @@ text-decoration:none;
 	 			    beer, and percentage of calorie the he<br>
 				    wants to burn.Press the button "Save".<br>
 				</h3>
+
+			<div data-role="footer">
+				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a>
+		 	</div>
 			</div>	
+			
+			
+			
+	
+				
+		  </div>
+			
 
-		</div>
-
+		
 		<div id = "viewRecord" data-role = "page">
+
 			<div id="header" style="background-color:#FFA500;">
 			<center><h1 style="margin-bottom:0;">How to use?</h1></center>
 			</div>
 
 			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
-			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel = "dialog">Calorie intake calculation</a></h2><br>
+			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel = "dialog">New Record</a></h2><br>
 			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel = "dialog">View Records</a></h2><br>
 			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel = "dialog">Data Graph</a></h2><br>	
 			        
@@ -633,16 +644,16 @@ text-decoration:none;
 
 		</div>
 		
-			<div id = "DataGraph" data-role = "page">
+		<div id = "DataGraph" data-role = "page">
 			
 			<div id="header" style="background-color:#FFA500;">
 			<h1 style="margin-bottom:0;">How to use?</h1>
 			</div>
 			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
 			
-			    <h2><a href="#intakeCal" data-transition="slidedown">Calorie intake calculation</a></h2><br>
-			    <h2><a href="#viewRecord" data-transition="slidedown">View Records</a></h2><br>
-			    <h2><a href="#DataGraph" data-transition="slidedown">Data Graph</a></h2><br>	
+			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel ="dialog">New Record</a></h2><br>
+			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel = "dialog">View Records</a></h2><br>
+			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel="dialog">Data Graph</a></h2><br>	
 			   
 			
 			</div>
