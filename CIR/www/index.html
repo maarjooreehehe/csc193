@@ -393,7 +393,8 @@ text-decoration:none;
 						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
 						<li><a href="#localStorageDiv" data-transition="pop">Data Table</a></li>
 						<li><a href="#pageDataGraph" data-transition="pop">Data Graph</a></li>
-						<li><a href="#manual" data-transition="pop">Manual</a></li>
+						<a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a>
+						
 
 						<li><a href="share.html" rel="external">Sharing</a></li>
 				
@@ -565,16 +566,73 @@ text-decoration:none;
 
 
 	</div> 
-		
-	<div id ="manual" data-role="page">
-		<div data-role="header">
-		<h1>Manual</h1>
+
+		<div id="about" data-role = "page">
+			
+			
+			<div id="header" style="background-color:#FFA500;">
+			<h1 style="margin-bottom:0;">How to use?</h1>
+			</div>
+			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
+			    <li><a href="#intakeCal" data-transition="slidedown">Calorie intake calculation</a></li><br>
+			    <li><a href="#viewRecord" data-transition="slidedown">View Records</a></li><br>
+			    <li><a href="#DataGraph" data-transition="slidedown">Data</a></li><br>	
+			        
+			
+			</div>
+
+		</div>
+			
+		<div id = "intakeCal" data-role = "page">
+			<div id="header" style="background-color:#FFA500;">
+			<h1 style="margin-bottom:0;">How to use?</h1>
+			</div>
+			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
+			    <li><a href="#intakeCal" data-transition="slidedown">Calorie intake calculation</a></li><br>
+			    <li><a href="#viewRecord" data-transition="slidedown">View Records</a></li><br>
+			    <li><a href="#DataGraph" data-transition="slidedown">Data</a></li><br>	
+			        
+			
+			</div>
+
+			<div id="intakeCal" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+			<h3>Provide the required data such as number of<br> 
+			    person who joined the drinking session,<br>
+			    number of beer they drink, volume of the<br>
+ 			    beer, and percentage of calorie the he<br>
+			    wants to burn.<br>
+			</h3>
+			
+			</div>	
+
 		</div>
 
+		<div id = "viewRecord" data-role = "page">
+			<div id="header" style="background-color:#FFA500;">
+			<h1 style="margin-bottom:0;">How to use?</h1>
+			</div>
+			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
+			    <li><a href="#intakeCal" data-transition="slidedown">Calorie intake calculation</a></li><br>
+			    <li><a href="#viewRecord" data-transition="slidedown">View Records</a></li><br>
+			    <li><a href="#DataGraph" data-transition="slidedown">Data</a></li><br>	
+			        
+			
+			</div>
+
+			<div id="intakeCal" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+			<h3>Provide the required data such as number of<br> 
+			    person who joined the drinking session,<br>
+			    number of beer they drink, volume of the<br>
+ 			    beer, and percentage of calorie the he<br>
+			    wants to burn.<br>
+			</h3>
+			
+			</div>	
+
+		</div>
+
+
 		
-
-
-	</div>
 
 <script src="scripts/jquery.jqplot.min.js" type="text/javascript"></script>
 	<script src="scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
