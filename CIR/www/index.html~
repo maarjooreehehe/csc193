@@ -82,6 +82,12 @@
 		color: #0f0;
 		}
 
+table,th,td
+{
+border:1px solid black;
+border-collapse:collapse;
+}
+
 	</style>
 
         <title>CIR</title>
@@ -412,7 +418,7 @@ text-decoration:none;
 							<li><a href="#calorieIntake" data-transition="pop" data-icon="edit">Data Input</a></li>
 							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
 							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
-							<li><a href="#about" data-transition="pop" data-icon="info">About</a></li>
+							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
 					</div>
@@ -571,14 +577,18 @@ text-decoration:none;
 			<center><h1 style="margin-bottom:0;">How to use?</h1></center>
 			</div>
 
-			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
-			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel="dialog">New Record</a></h2<br>
-			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel="dialog">View Records</a></h2><br>
-			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel ="dialog">Data Graph</a></h2><br>	
+			<div id="manual" style="background-color:#FFD700;height:100px;width:500px;float:left;">
+			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel="dialog">New Record</a>
+			   	<a href="#viewRecord" data-transition="slidedown" data-rel="dialog">View Records</a>
+			    	<a href="#DataGraph" data-transition="slidedown" data-rel ="dialog">Data Graph</a>
+			</h2>	
 			       
 		  	 </div> 
+				
+			<div id="footer" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a></div>
 		
-			
+		
 		</div>
 		
 		
@@ -590,27 +600,28 @@ text-decoration:none;
 			</div>
 			
 
-			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
-			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel="dialog">New Record</a></h2><br>
-			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel="dialog">View Records</a></h2><br>
-			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel="dialog">Data Graph</a></h2></br>	
+			<div id="intakeCal" style="background-color:#FFD700;height:100px;width:500px;float:left;">
+			
+			   <h2><a href="#intakeCal" data-transition="slidedown" data-rel="dialog">New Record</a></h2>
+			   <h2><a href="#viewRecord" data-transition="slidedown" data-rel="dialog">View Records</a></h2>
+			   <h2><a href="#DataGraph" data-transition="slidedown" data-rel="dialog">Data Graph</a></h2>	
 			       
 			
 			</div>
 
-			<div id="" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
-				<h3>Provide the required data such as number of<br> 
+			<div id="content" style="background-color:#EEEEEE;height:200px;width:500px;float:left;">
+				<center><h3>Provide the required data such as number of<br> 
 				    person who joined the drinking session,<br>
 				    number of beer they drink, volume of the<br>
 	 			    beer, and percentage of calorie the he<br>
 				    wants to burn.Press the button "Save".<br>
-				</h3>
+				 <img border="0" src="/img/UserDataInput.png" width="300" height="100">
+				</center></h3>
 
-			<div data-role="footer">
-				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a>
-		 	</div>
-			</div>	
 			
+			</div>	
+			<div id="footer" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a></div>
 			
 			
 	
@@ -624,47 +635,78 @@ text-decoration:none;
 			<div id="header" style="background-color:#FFA500;">
 			<center><h1 style="margin-bottom:0;">How to use?</h1></center>
 			</div>
-
-			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
-			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel = "dialog">New Record</a></h2><br>
-			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel = "dialog">View Records</a></h2><br>
-			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel = "dialog">Data Graph</a></h2><br>	
+			
+			
+			<div id="" style="background-color:#FFD700;height:100px;width:500px;float:left;">
+			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel = "dialog">New Record</a></h2>
+			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel = "dialog">View Records</a></h2>
+			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel = "dialog">Data Graph</a></h2>	
 			        
 			
 			</div>
-
-			<div id="viewRecord" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+			
+			<div id="viewRecord" style="background-color:#EEEEEE;height:200px;width:500px;float:left;">
 			<h3>The user can see his previous calories to the<br> 
 			   new one, either in a table form or graphical form.<br>
 
 			</h3>
-				
+			</div>
 			
-			</div>	
-
+			<div id="footer" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a></div>
 		</div>
 		
 		<div id = "DataGraph" data-role = "page">
 			
 			<div id="header" style="background-color:#FFA500;">
-			<h1 style="margin-bottom:0;">How to use?</h1>
+			<center><h1 style="margin-bottom:0;">How to use?</h1></center>
 			</div>
-			<div id="" style="background-color:#FFD700;height:200px;width:150px;float:left;">
+			<div id="" style="background-color:#FFD700;height:100px;width:500px;float:left;">
 			
-			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel ="dialog">New Record</a></h2><br>
-			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel = "dialog">View Records</a></h2><br>
-			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel="dialog">Data Graph</a></h2><br>	
+			    <h2><a href="#intakeCal" data-transition="slidedown" data-rel ="dialog">New Record</a></h2>
+			    <h2><a href="#viewRecord" data-transition="slidedown" data-rel = "dialog">View Records</a></h2>
+			    <h2><a href="#DataGraph" data-transition="slidedown" data-rel="dialog">Data Graph</a></h2>	
 			   
 			
 			</div>
 			
 
-			<div id="DataGraph" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+			<div id="DataGraph" style="background-color:#EEEEEE;height:200px;width:500px;float:left;">
 			<h3>Records of the user will be shown in a graph form.<br>
 			</h3>
+			</div>
 			
-			</div>	
+			<div id="footer" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a></div>	
 			
+		</div>
+	
+		<div id="about" data-role = "page">
+			
+			
+			<div id="header" style="background-color:#FFA500;">
+			<center><h1 style="margin-bottom:0;">About</h1></center>
+			</div>
+			
+
+			<div id="about" style="background-color:#FFD700;height:200px;width:500px;float:left;">
+			    
+				<h3>
+				<cenetr>CALORIE INTAKE REMINDER app is a simple android<br>
+				application that lets the user be reminded of his<br>
+ 				calorie intake with Facebook Integration. For now,<br>
+				this app is limited for beverage only, but for future<br>
+				use this app can be developed further to calculate<br>
+				other foods.<br>
+				</center>
+			</h3>
+			
+		  	 </div> 
+				
+			<div id="footer" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a></div>
+		
+		
 		</div>
 
 		
