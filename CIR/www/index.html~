@@ -402,8 +402,9 @@ text-decoration:none;
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#newCalorie" data-transition="pop">Calorie Intake</a></li>
+						<li><a href="#calorieIntake" data-transition="pop">Calorie Intake</a></li>
 						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
+						<li><a href="#newCalorie" data-transition="pop">New</a></li>
 						<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>
 						
 
@@ -420,7 +421,7 @@ text-decoration:none;
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#newCalorie" data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#calorieIntake" data-transition="pop" data-icon="edit">Data Input</a></li>
 							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
 							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
@@ -613,6 +614,12 @@ text-decoration:none;
                 </div>
                 
             </div>
+
+	<div data-role="page" id="viewData" data-add-back-btn="true">
+		<div data-role="header">
+			<h1>View Data</h1>
+		</div>
+	</div>
 
 	<div id="addCalorieIntake" data-role="page" >
 			<header data-role="header" data-position="fixed">

@@ -72,7 +72,7 @@
               var len = results.rows.length;
               alert("Items saved:" +len);
               for(var i=0;i<len;i++){
-                  htmlstring+='<li> Name:' + results.rows.item(i).beverage + '<br/> TotalCalories:' + results.rows.item(i).totalCalories  + '</li>'
+                  htmlstring+='<li><a href="#viewData" > Name:' + results.rows.item(i).beverage + '<br/> TotalCalories:' + results.rows.item(i).totalCalories  + '</a></li>'
               }
               $('#resultList').html(htmlstring);
               $('#resultList').listview('refresh');
@@ -87,6 +87,11 @@
                     $.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
                     return false;
                 }
+
+		/*function viewData(){
+			$.mobile.changePage("#",{reverse:false,transition:"slide"});
+			return false;
+		}*/
 
 
 
