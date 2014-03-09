@@ -402,8 +402,9 @@ text-decoration:none;
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#newCalorie" data-transition="pop">Calorie Intake</a></li>
+						<li><a href="#calorieIntake" data-transition="pop">Calorie Intake</a></li>
 						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
+						<li><a href="#newCalorie" data-transition="pop">New</a></li>
 						<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>
 						
 
@@ -420,7 +421,7 @@ text-decoration:none;
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#newCalorie" data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#calorieIntake" data-transition="pop" data-icon="edit">Data Input</a></li>
 							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
 							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
@@ -449,6 +450,89 @@ text-decoration:none;
 			
 	
 		
+			<!--New Calorie Intake Calculation-->
+
+		<div id="calorieIntake" data-role="page" data-rockncoder-jspage="manageBarChart">
+			<header data-role="header" data-position="fixed">
+				<a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a>
+				<h1>Know Your Calories</h1>
+				<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
+			</header>
+			
+			<section data-role="content">
+			<a id="popupBoxOpen"><h1>Calorie Intake Reminder</h1></a>		
+				
+				<div id="popup_box">	<!-- OUR PopupBox DIV-->
+					<h1 id="result"></h1>
+					<a id="popupBoxClose">Close</a>	
+				</div>	 
+			
+			<!--			
+			<div id="barChart" class="myChart"; height: 5px; width:5px></div>
+			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
+			-->
+			
+			<form>
+				<div>
+				<label for="members">Members:</label>
+				<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true" required aria-required="true"/>
+				</div>
+				
+				<div>
+				<label for="quantity">Quantity:</label>
+				<input type="text" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true" required aria-required="true"/>
+				</div>
+				
+				<div>
+				<label for="volume">Volume:</label>
+				<input type="text" id="volume" class="numberinput" placeholder="volume"  data-mini="true" required aria-required="true"/>
+				</div>
+				
+				<select id="volumeUnit" data-mini="true"/>
+				<option value=1>ml</option>
+				<option value=2>L</option>
+				<option value=3>oz</option>
+				</select>
+				
+				<div>
+				<label for="Calorie Per Volume">Calorie Per Volume:</label>
+				<input type="text" id="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" required aria-required="true"/>
+				<input type="text" id="calorieMl" class="numberinput" placeholder="Enter volume"  data-mini="true" required aria-required="true"/>
+				<select id="calorieVolumeUnit" data-mini="true"/>
+				<option value=1>ml</option>
+				<option value=2>L</option>
+				<option value=3>oz</option>
+				</select>
+				</div>
+				
+				<div>
+				<label for="percentage">Percentage:</label>
+				<select id="percentage" data-mini="true"/>
+				<option value=5>5%</option>
+				<option value=10>10%</option>
+				<option value=15>15%</option>
+				<option value=20>20%</option>
+				</select>
+				</div>
+				<input type="submit" data-theme="b" value="SAVE" onclick="setKey()" />
+			</form>
+			</section>
+			
+		
+			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#calorieIntake" class="ui-state-persist ui-btn-active"  data-transition="pop" data-icon="edit">Data Input</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+			</div>
+			
+		</div>
 	
 	
 	
