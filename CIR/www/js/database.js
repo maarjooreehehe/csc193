@@ -88,10 +88,11 @@
                     return false;
                 }
 
-		/*function viewData(){
-			$.mobile.changePage("#",{reverse:false,transition:"slide"});
+		function viewBeverageRecords(){
+			db.transaction(sucessQueryDB, errorCB);
+			$.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
 			return false;
-		}*/
+		}
 
 
 
