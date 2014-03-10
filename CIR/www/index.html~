@@ -594,7 +594,7 @@ text-decoration:none;
 			<h1></h1>
 	</header>
 		<p ><a href="#addCalorieIntake" data-role="button">Add Calorie Intake</a></p>
-		<p ><a href="#" onclick="viewBeverageRecords" data-role="button">View Records</a></p>
+		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">View Records</a></p>
         </div>
 
 
@@ -620,6 +620,16 @@ text-decoration:none;
 		<div data-role="header">
 			<h1>View Data</h1>
 		</div>
+
+		  <div data-role="content">
+				<div id="output">
+				    
+				    </div>
+				    
+				    <ul data-role="listview" id="itemResult"></ul>
+				    
+				
+		</div>
 	</div>
 
 	<div id="addCalorieIntake" data-role="page" >
@@ -630,17 +640,10 @@ text-decoration:none;
 			
 		
 			  <form method="POST" onsubmit="return addCalorie()" id="addCalorieForm" data-ajax="false">
-                  
-			
 				<input type="text" name="beverageName" class="" placeholder="Beverage Name" data-mini="true" />
-				
-             	
 				<input type="text" name="members" class="numberinput" placeholder="Group Members" data-mini="true" />
-	
 				<input type="text" name="quantity" class="numberinput" placeholder="Quantity"  data-mini="true" />
-	
 				<input type="text" name="volume" class="numberinput" placeholder="volume"  data-mini="true" />
-			
 				<select name="volumeUnit" data-mini="true"/>
 				<option value=1>ml</option>
 				<option value=2>L</option>

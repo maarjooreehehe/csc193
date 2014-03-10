@@ -72,7 +72,7 @@
               var len = results.rows.length;
               alert("Items saved:" +len);
               for(var i=0;i<len;i++){
-                  htmlstring+='<li><a href="#viewData" > Name:' + results.rows.item(i).beverage + '<br/> TotalCalories:' + results.rows.item(i).totalCalories  + '</a></li>'
+                  htmlstring+='<li><a href="#" onclick="viewData(\''+ results.rows.item(i).beverage +'\')"> Name:' + results.rows.item(i).beverage + '<br/> TotalCalories:' + results.rows.item(i).totalCalories  + '</a></li>'
               }
               $('#resultList').html(htmlstring);
               $('#resultList').listview('refresh');
@@ -89,10 +89,29 @@
                 }
 
 		function viewBeverageRecords(){
+			db.transaction(sucessQueryDB, errorCB);
 			$.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
 			return false;
 		}
 
+		function viewData(beverage){
+			var sql = 'SELECT * FROM DEMO where beverage=?';
+			db.transaction( (function(tx){tx.executeSql(sql, [beverage], renderData,errorCB)}), errorCB);
+			$.mobile.changePage("#viewData",{reverse:false,transition:"slide"});
+			return false;
+		}
+
+	      function renderData(tx,result){
+		      var htmlString='';
+		      
+		      alert(result.rows.item(0).beverage);
+		
+		htmlString ='<p><h1>Beverage Name:</h1>'+ result.rows.item(0).beverage+'</p><p><h1>Members:</h1>'+result.rows.item(0).members+'</p><p><h1>Quantity: </h1>'+result.rows.item(0).quantity+'</p><p><h1>Volume: </h1>'+result.rows.item(0).volume+'</p><p><h1>Total Calories: </h1>'+result.rows.item(0).totalCalories+'</p>';
+		 $('#itemResult').html(htmlString);
+		
+		
+              
+          }
 
 
 
