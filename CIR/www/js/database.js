@@ -70,7 +70,7 @@
           function renderList(tx,results){
               var htmlstring='';
               var len = results.rows.length;
-              alert("Items saved:" +len);
+            //  alert("Items saved:" +len);
               for(var i=0;i<len;i++){
                   htmlstring+='<li><a href="#" onclick="viewData(\''+ results.rows.item(i).beverage +'\')"> Name:' + results.rows.item(i).beverage + '<br/> TotalCalories:' + results.rows.item(i).totalCalories  + '</a></li>'
               }

@@ -20,7 +20,7 @@
           }
           
           function successCB(){
-              alert("Database Installation Successfull");
+            //  alert("Database Installation Successfull");
              
           }
           function addCalorieDB(tx){
