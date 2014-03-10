@@ -626,8 +626,8 @@ text-decoration:none;
 				    
 				    </div>
 				    
-				    <ul data-role="listview" id="itemResult"></ul>
-				    
+				    <div  id="itemResult"></div>
+				    <p><a href="#" data-role="button">Advise</a></p>
 				
 		</div>
 	</div>

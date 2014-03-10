@@ -103,10 +103,9 @@
 
 	      function renderData(tx,result){
 		      var htmlString='';
-		      
-		      alert(result.rows.item(0).beverage);
 		
-		htmlString ='<p><h1>Beverage Name:</h1>'+ result.rows.item(0).beverage+'</p><p><h1>Members:</h1>'+result.rows.item(0).members+'</p><p><h1>Quantity: </h1>'+result.rows.item(0).quantity+'</p><p><h1>Volume: </h1>'+result.rows.item(0).volume+'</p><p><h1>Total Calories: </h1>'+result.rows.item(0).totalCalories+'</p>';
+			
+		htmlString ='<p><h1>Beverage Name:'+ result.rows.item(0).beverage+'</h1></p><p><h1>Members:'+result.rows.item(0).members+'</h1></p><p><h1>Quantity: '+result.rows.item(0).quantity+'</h1></p><p><h1>Volume: '+result.rows.item(0).volume+'</h1></p><p><h1>Total Calories: '+result.rows.item(0).totalCalories+'</h1></p>';
 		 $('#itemResult').html(htmlString);
 		
 		
