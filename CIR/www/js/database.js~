@@ -63,7 +63,7 @@
             		var len = results.rows.length;
             		//alert("Items saved:" +len);
               		for(var i=0;i<len;i++){
-				htmlstring+='<li><a href="#" onClick="inputCalorie()" > Name:' + results.rows.item(i).beverage + '<br/> '+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL</a></li>'
+				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverage+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')"> Name:' + results.rows.item(i).beverage + '<br/> '+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL</a></li>'
              	 }
 
 			      $('#resultList').html(htmlstring);
@@ -77,11 +77,19 @@
 			return false;
 		}
 
-		function inputCalorie(){
+		function inputCalorie(beverageName, cPV, cV){
+			var _beverage = document.getElementById("beverage");
+			_beverage.value = beverageName;
+
+			var _cPV = document.getElementById("caloriePerVolume");
+			_cPV.value = cPV;
+
+			var _cV = document.getElementById("calorieVolume");
+			_cV.value = cV;
+
 			$.mobile.changePage("#inputCalorie",{reverse:false,transition:"slide"});
 			return false;
 		}
-
 
 	
 
