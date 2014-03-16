@@ -77,6 +77,12 @@
 			return false;
 		}
 
+		function inputCalorie(){
+			$.mobile.changePage("#inputCalorie",{reverse:false,transition:"slide"});
+			return false;
+		}
+
+
 	
 
 
