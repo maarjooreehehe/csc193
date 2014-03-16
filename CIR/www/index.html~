@@ -404,7 +404,6 @@ text-decoration:none;
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#calorieIntake" data-transition="pop">Calorie Intake</a></li>
 						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
 						<li><a href="#newCalorie" data-transition="pop">New</a></li>
 						<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>
