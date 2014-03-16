@@ -595,8 +595,9 @@ text-decoration:none;
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
 			<h1></h1>
 	</header>
-		<p ><a href="#addCalorieIntake" data-role="button">Add Calorie Intake</a></p>
+		
 		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">View Records</a></p>
+		<p ><a href="#addBeverage" data-role="button">Add Beverage</a></p>
         </div>
 
 
@@ -618,44 +619,23 @@ text-decoration:none;
                 
             </div>
 
-	<div data-role="page" id="viewData" data-add-back-btn="true">
-		<div data-role="header">
-			<h1>View Data</h1>
-		</div>
 
-		  <div data-role="content">
-				<div id="output">
-				    
-				    </div>
-				    
-				    <div  id="itemResult"></div>
-				    <p><a href="#" data-role="button">Advise</a></p>
-				
-		</div>
-	</div>
 
-	<div id="addCalorieIntake" data-role="page" >
+	<div id="addBeverage" data-role="page" >
 			<header data-role="header" data-position="fixed">
 				<a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a>
-				<h1>Know Your Calories</h1>
+				<h1>New Beverage</h1>
 			</header>
 			
 		
-			  <form method="POST" onsubmit="return addCalorie()" id="addCalorieForm" data-ajax="false">
+			  <form method="POST" onsubmit="return addBeverage()" id="addBeverageForm" data-ajax="false">
 				<input type="text" name="beverageName" class="" placeholder="Beverage Name" data-mini="true" />
-				<input type="text" name="members" class="numberinput" placeholder="Group Members" data-mini="true" />
-				<input type="text" name="quantity" class="numberinput" placeholder="Quantity"  data-mini="true" />
-				<input type="text" name="volume" class="numberinput" placeholder="volume"  data-mini="true" />
-				<select name="volumeUnit" data-mini="true"/>
-				<option value=1>ml</option>
-				<option value=2>L</option>
-				<option value=3>oz</option>
-				</select>
+				
 				
 				<div>
 				<label for="Calorie Per Volume">Calorie Per Volume:</label>
 				<input type="text" name="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" />
-				<input type="text" name="calorie" class="numberinput" placeholder="Enter volume"  data-mini="true"/>
+				<input type="text" name="calorieVolume" class="numberinput" placeholder="Enter volume"  data-mini="true"/>
 				<select name="calorieVolumeUnit" data-mini="true"/>
 				<option value=1>ml</option>
 				<option value=2>L</option>
