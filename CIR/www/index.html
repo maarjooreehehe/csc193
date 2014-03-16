@@ -404,7 +404,6 @@ text-decoration:none;
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#calorieIntake" data-transition="pop">Calorie Intake</a></li>
 						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
 						<li><a href="#newCalorie" data-transition="pop">New</a></li>
 						<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>
@@ -589,6 +588,7 @@ text-decoration:none;
             app.initialize();
         </script>
 
+ 	<!--New CIR Menu-->
  	<div id="newCalorie" class="app" data-role="page">
         
       	<header data-role="header" data-position="fixed">
@@ -599,10 +599,10 @@ text-decoration:none;
 		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">View Records</a></p>
 		<p ><a href="#addBeverage" data-role="button">Add Beverage</a></p>
         </div>
+	<!--End: New CIR Menu-->
 
 
-
-        
+       <!--View Beverage List-->
         <div data-role="page" id="beverageList" data-add-back-btn="true">
             <div data-role="header">
                 <h1>Beverage List</h1>
@@ -618,9 +618,9 @@ text-decoration:none;
                 </div>
                 
             </div>
+	<!--End: View Beverage List -->
 
-
-
+	<!--Add Beverage-->
 	<div id="addBeverage" data-role="page" >
 			<header data-role="header" data-position="fixed">
 				<a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a>
@@ -643,14 +643,27 @@ text-decoration:none;
 				</select>
 				</div>
 				
-			
-		
+	
  			<input type="submit" value="Submit" data-theme="b">
                              
 			</form>
 	
 		</div>
-<!--end-->>
+	<!--End: Add Beverage-->
+
+	<!--Input Calorie-->
+	<div data-role="page" id="inputCalorie" data-add-back-btn="true">
+            <div data-role="header">
+                <h1>Know Your Calories</h1>
+            </div>
+            <div data-role="content">
+               
+		
+            </div>
+	</div>
+	<!--End: Input Calorie-->
+
+<!--end-->
 
 <!--MANUAL CONTENT-->
 		<div id="manual" data-role = "page">

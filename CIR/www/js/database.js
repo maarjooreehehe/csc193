@@ -63,7 +63,7 @@
             		var len = results.rows.length;
             		//alert("Items saved:" +len);
               		for(var i=0;i<len;i++){
-				htmlstring+='<li><a href="#"> Name:' + results.rows.item(i).beverage + '<br/> '+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL</a></li>'
+				htmlstring+='<li><a href="#" onClick="inputCalorie()" > Name:' + results.rows.item(i).beverage + '<br/> '+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL</a></li>'
              	 }
 
 			      $('#resultList').html(htmlstring);
