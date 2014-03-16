@@ -117,16 +117,20 @@
 				
 			}
 
-			totalCalories = parseInt( ((_caloriePerVolume/_calorieVolume) * ((_quantity*_volume)/_members)),10 );
-			burntCalorie = parseInt( (totalCalories - ((totalCalories*20)/100)) ,10);
-			water = Math.round(((((totalCalories-burntCalorie)*1000)/33.5)/240));
+			var key = totalCalories;
+			var value = burntCalorie;
+			localStorage.setItem(key, value);
 
 			
 			document.getElementById("totalCaloriesResult").innerHTML="<h1>Beverage: </h1>"+_beverageName+"<br/>"+
 										"<h1>Calories Per Volume: </h1>"+_caloriePerVolume+" calories per "+_calorieVolume+" mL"+
 										"<h1>Members: </h1>" +_members+"<br/>"+
 										"<h1>Quantity: </h1>"+_quantity+"<br/>"+
-										"<h1>Volume: </h1>"+_volume+" mL <br/>";
+										"<h1>Volume: </h1>"+_volume+" mL <br/>"+
+										"<h1>Total Calories: </h1>"+totalCalories;
+
+			document.getElementById("adviceResult").innerHTML="You can lessen your calorie-intake by 20% by drinking "+water+" glasses of cold water";
+			
 			$.mobile.changePage("#totalCal",{reverse:false,transition:"slide"});
 			return false;
          	}

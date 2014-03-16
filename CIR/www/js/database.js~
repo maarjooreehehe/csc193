@@ -91,6 +91,49 @@
 			return false;
 		}
 
+		/*function calculateCalories(){
+			db.transaction(calculateCalories2, errorCB);
+			$.mobile.changePage("#totalCalories",{reverse:false,transition:"slide"});
+			return false;
+		}*/
+
+		function calculateCalories2(){
+			_beverageName = $("#beverage").val();
+			_caloriePerVolume = $("#caloriePerVolume").val();
+			_calorieVolume=$("#calorieVolume").val();
+			
+			_members = $("#members").val();
+			_quantity = $("#quantity").val();
+			_volumeUnit = $("#volumeUnit").val();
+			
+			if(_volumeUnit==2){
+				_volume=( $("#volume").val() * 1000);
+			}
+			else if(volumeUnit==3){
+				_volume=($("#volume").val()  * 30);
+			}
+			else{
+				_volume= $("#volume").val();
+				
+			}
+
+			totalCalories = parseInt( ((_caloriePerVolume/_calorieVolume) * ((_quantity*_volume)/_members)),10 );
+			burntCalorie = parseInt( (totalCalories - ((totalCalories*20)/100)) ,10);
+			water = Math.round(((((totalCalories-burntCalorie)*1000)/33.5)/240));
+
+			
+			document.getElementById("totalCaloriesResult").innerHTML="<h1>Beverage: </h1>"+_beverageName+"<br/>"+
+										"<h1>Calories Per Volume: </h1>"+_caloriePerVolume+" calories per "+_calorieVolume+" mL"+
+										"<h1>Members: </h1>" +_members+"<br/>"+
+										"<h1>Quantity: </h1>"+_quantity+"<br/>"+
+										"<h1>Volume: </h1>"+_volume+" mL <br/>";
+			$.mobile.changePage("#totalCal",{reverse:false,transition:"slide"});
+			return false;
+         	}
+
+
+	
+
 	
 
 

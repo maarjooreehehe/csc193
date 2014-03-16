@@ -572,25 +572,20 @@ text-decoration:none;
             <div data-role="header">
                 <h1>Know Your Calories</h1>
             </div>
-            <div data-role="content">
-               
-		
-            </div>
-
-
-		  <form method="POST" onsubmit="return calculateCalories()"  data-ajax="false">
-				Beverage Name:
-				<input type="text" name="beverageName" id="beverage" data-mini="true" />
-				<input type="text" name="caloriePerVolume" id="caloriePerVolume" data-mini="true" />
-				<input type="text" name="calorieVolume" id="calorieVolume" data-mini="true" />
+       
+		  <form method="POST" onsubmit="return calculateCalories2()"  data-ajax="false">
 				
-				<input type="text" name="members" class="numberinput" placeholder="Group Members" data-mini="true" />
+				<input type="hidden" name="beverageName" id="beverage" data-mini="true" />
+				<input type="hidden" name="caloriePerVolume" id="caloriePerVolume" data-mini="true" />
+				<input type="hidden" name="calorieVolume" id="calorieVolume" data-mini="true" />
+				
+				<input type="text" name="members" id="members" class="numberinput" placeholder="Group Members" data-mini="true" />
 	
-				<input type="text" name="quantity" class="numberinput" placeholder="Quantity"  data-mini="true" />
+				<input type="text" name="quantity" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true" />
 	
-				<input type="text" name="volume" class="numberinput" placeholder="volume"  data-mini="true" />
+				<input type="text" name="volume" id="volume" class="numberinput" placeholder="volume"  data-mini="true" />
 			
-				<select name="volumeUnit" data-mini="true"/>
+				<select name="volumeUnit" id="volumeUnit" data-mini="true"/>
 				<option value=1>ml</option>
 				<option value=2>L</option>
 				<option value=3>oz</option>
@@ -601,6 +596,25 @@ text-decoration:none;
 			</form>
 	</div>
 	<!--End: Calculate Calorie-->
+
+	<!--Total Calories-->
+	<div data-role="page" id="totalCal" data-add-back-btn="true">
+		<div data-role="header">
+                <h1>Total Calories</h1>
+           	 </div>
+
+		<div id="totalCaloriesResult"></div>
+		
+		<!--Advice-->
+		<a type="button" id="popupBoxOpen"><h1>Advice</h1></a>		
+				
+				<div id="popup_box">
+					<h1 id="adviceResult"></h1>
+					<a id="popupBoxClose">Close</a>	
+				</div>
+		<!--End: Advice-->
+	</div>
+	<!--End:Total Calories-->
 
 <!--end-->
 
