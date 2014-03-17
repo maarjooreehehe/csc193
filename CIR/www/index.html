@@ -13,7 +13,6 @@
   
 	  <script src="scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
 	  <script src="scripts/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
-<!-- <script src="scripts/jquery.mobile-1.3.2.min.css" type="text/javascript"></script>-->
 	  <script src="scripts/modernizr-1.6.min.js" type="text/javascript"></script>
 	  
 		<script src="scripts/jquery.jqplot.min.js" type="text/javascript"></script>
@@ -25,80 +24,18 @@
 		<script src="scripts/visualize.jQuery.js" type="text/javascript"></script>
 		<script src="scripts/example.js" type="text/javascript"></script>
 	
+	<script src="js/database.js" type="text/javascript"></script>
+	   <script type="text/javascript" src="cordova.js"></script>
 
-	  <style type="text/css">
-		.myChart {
-			width: 300px;
-			height: 200px;
-		}
-		
-		
-		#toast{
-		position: fixed;
-		bottom: 200px;
-		left: 50%;
-		width: 200px;
-		margin-left: -100px;
-		border: 1px solid #666;
-		background-color: black;
-		padding: 10px 0 ;
-		text-align:center;
-		font-size: 200%;
-		font-family:"Arial";
-		color: white;
-		opacity: .4;
-		
-
-		-webkit-transition: opacity 0.5s ease-out; /* Saf3.2+, Chrome */
-		-moz-transition: opacity 0.5s ease-out; /* FF4+ */
-		-ms-transition: opacity 0.5s ease-out; /* IE10? */
-		-o-transition: opacity 0.5s ease-out; /* Opera 10.5+ */
-		transition: opacity 0.5s ease-out;
-		}
 	
-		/* for the background image */
 
-		#bg { position: fixed; top: 0; left: 0; }
-		.bgwidth { width: 100%; }
-		.bgheight { height: 100%; }
-		#bg {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;
-}
-		android:src="@drawable/bg.jpg"
-		android:scaleType = "centerCrop"
-		    
-		
-		/* for the footer */
-		
-		#footer{width: 100%;
-		background-color: #fb7b4b;
-		opacity: 0.8; // or use rgba() where a opacity.
-		}
-
-		.footer:hover{
-		background-color: #ed551c;
-		opacity: 1.8;
-		}
-		
-		.footer:active{
-		color: #0f0;
-		}
-
-table,th,td
-{
-border:1px solid black;
-border-collapse:collapse;
-}
-
-	</style>
+	 
 
         <title>CIR</title>
+
+	<script type="text/javascript">
+            app.initialize();
+        </script>
 
 	<script type="text/javascript">
 	
@@ -132,9 +69,9 @@ border-collapse:collapse;
            
 		   if (Modernizr.localstorage) {
                 $("#detectionSpan").html("Your browser supports local storage");
-            } 
+           	 } 
 
-            showKeys();
+           	 showKeys();
         });
 
         // show the keys currently held in the local and session storage
@@ -143,8 +80,8 @@ border-collapse:collapse;
                 showStorageKeys("local", "#localTable");
             }
         }
+		
 
-        // show the keys currently held in the specified type of storage in the specified table
         function showStorageKeys(type, table) {
             // get the specified type of storage, i.e. local or session
             var storage = window[type + 'Storage'];
@@ -157,61 +94,13 @@ border-collapse:collapse;
                 var key = storage.key(i);
                 var value = storage.getItem(key);
 
-                $(table + " > tbody:last")
-                    .append("<tr><td>" + key + "</td>" +
-                            "<td>" + value + "</td>" + 
-                            "<td><input type='submit' value='Remove' onclick='removeItem(\"" + type + "\", \"" + key + "\")'/></td></tr>");
+                $(table + ' > tbody:last')
+                    .append('<tr><td>' + key + '</td>' +
+                            '<td>' + value + '</td>' + 
+                            '<td><input type="submit" value="Remove" onclick="removeItem(\'' + type + '\', \'' + key + '\')"/></td></tr>");
             }
         }
 
-	 // adds a new key to local storage
-	  	function setKey() {
-			members = $("#members").val();
-			quantity = $("#quantity").val();
-			volumeUnit = $("#volumeUnit").val();
-			calorieVolumeUnit = $("#calorieVolumeUnit").val();
-			caloriePerVolume = $("#caloriePerVolume").val();
-			percentage = $("#percentage").val();
-			
-			if(volumeUnit==2){
-				var volume=( $("#volume").val() * 1000);
-			}
-			else if(volumeUnit==3){
-				volume=($("#volume").val()  * 30);
-			}
-			else{
-				volume= $("#volume").val();
-				
-			}
-			
-			if(calorieVolumeUnit==2){
-				calorieMl = ($("#calorieMl").val() * 1000);
-			}
-			else if(calorieVolumeUnit==3){
-				calorieMl=($("#calorieMl").val() * 30);
-			}
-			else{
-				calorieMl=$("#calorieMl").val();
-			}
-			
-			totalCalorie = parseInt( ((caloriePerVolume/calorieMl) * ((quantity*volume)/members)),10 );
-			burntCalorie = parseInt( (totalCalorie - ((totalCalorie*percentage)/100)) ,10);
-			water = Math.round(((((totalCalorie-burntCalorie)*1000)/33.5)/240));
-			
-			waterPerWeek = water * 7;
-			
-			var key = totalCalorie;
-			var value = burntCalorie;
-			var myDate=new Date();
-			
-			document.getElementById("result").innerHTML="You have a calorie of: "+ totalCalorie + ",  to lessen your calorie into " + burntCalorie + ",   you must drink " + water + "   glasses of cold water; " + waterPerWeek + " glasses of cold water per week<p></p>" + myDate;
-		
-		    if (Modernizr.localstorage) {
-		    localStorage.setItem(key, value);
-			drawToast("Item saved");
-		    }
-		    showKeys();
-		}
 
 	function hideToast(){
 		var alert = document.getElementById("toast");
@@ -239,14 +128,9 @@ border-collapse:collapse;
             clearKeys("local");
         }
 
-    
 
-        // clear all the held keys in the specified type of storage
         function clearKeys(type) {
-            // get the specified type of storage
             var storage = window[type + 'Storage'];
-
-            // clear the keys
             storage.clear();
 
             showKeys();
@@ -262,56 +146,6 @@ border-collapse:collapse;
     
      
     </script>
-
-<!--POP UP BOX HERE--->
-
-	
-	<style type="text/css">
-/* popup_box DIV-Styles*/
-#popup_box { 
-	display:none; /* Hide the DIV */
-	position:fixed;  
-	_position:absolute; /* hack for internet explorer 6 */  
-	width: 0 auto;
-	height: 0 auto;
-	background:#FFFFFF;  
-	center: 0 auto;
-	top: 150px;
-	z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
-	margin-left: 15px;  
-	
-	/* additional features, can be omitted */
-	border:2px solid #ff0000;  	
-	padding:15px;  
-	font-size:10px;  
-	-moz-box-shadow: 0 0 5px #ff0000;
-	-webkit-box-shadow: 0 0 5px #ff0000;
-	box-shadow: 0 0 5px #ff0000;
-	
-}
-
-#container {
-	background: #d2d2d2; /*Sample*/
-	width:100%;
-	height:100%;
-}
-
-a{  
-cursor: pointer;  
-text-decoration:none;  
-} 
-
-/* This is for the positioning of the Close Link */
-#popupBoxClose {
-	font-size:20px;  
-	line-height:15px;  
-	left:5px;  
-	top:5px;  
-	position:absolute;  
-	color:#6fa5e2;  
-	font-weight:50;  	
-}
-</style>
 
 <script type="text/javascript">
 	
@@ -386,44 +220,157 @@ text-decoration:none;
              });
          }
      </script>
+
+<!--POP UP BOX HERE--->
+
+	
+	<style type="text/css">
+/* popup_box DIV-Styles*/
+#popup_box { 
+	display:none; /* Hide the DIV */
+	position:fixed;  
+	_position:absolute; /* hack for internet explorer 6 */  
+	width: 0 auto;
+	height: 0 auto;
+	background:#FFFFFF;  
+	center: 0 auto;
+	top: 150px;
+	z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+	margin-left: 15px;  
+	
+	/* additional features, can be omitted */
+	border:2px solid #ff0000;  	
+	padding:15px;  
+	font-size:10px;  
+	-moz-box-shadow: 0 0 5px #ff0000;
+	-webkit-box-shadow: 0 0 5px #ff0000;
+	box-shadow: 0 0 5px #ff0000;
+	
+}
+
+#container {
+	background: #d2d2d2; /*Sample*/
+	width:100%;
+	height:100%;
+}
+
+a{  
+cursor: pointer;  
+text-decoration:none;  
+} 
+
+/* This is for the positioning of the Close Link */
+#popupBoxClose {
+	font-size:20px;  
+	line-height:15px;  
+	left:5px;  
+	top:5px;  
+	position:absolute;  
+	color:#6fa5e2;  
+	font-weight:50;  	
+}
+</style>
+
+ <style type="text/css">
+		.myChart {
+			width: 300px;
+			height: 200px;
+		}
+		
+		
+		#toast{
+		position: fixed;
+		bottom: 200px;
+		left: 50%;
+		width: 200px;
+		margin-left: -100px;
+		border: 1px solid #666;
+		background-color: black;
+		padding: 10px 0 ;
+		text-align:center;
+		font-size: 200%;
+		font-family:"Arial";
+		color: white;
+		opacity: .4;
+		
+
+		-webkit-transition: opacity 0.5s ease-out; /* Saf3.2+, Chrome */
+		-moz-transition: opacity 0.5s ease-out; /* FF4+ */
+		-ms-transition: opacity 0.5s ease-out; /* IE10? */
+		-o-transition: opacity 0.5s ease-out; /* Opera 10.5+ */
+		transition: opacity 0.5s ease-out;
+		}
+	
+		/* for the background image */
+
+		#bg { position: fixed; top: 0; left: 0; }
+		.bgwidth { width: 100%; }
+		.bgheight { height: 100%; }
+		#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+		android:src="@drawable/bg.jpg"
+		android:scaleType = "centerCrop"
+		    
+		
+		/* for the footer */
+		
+		#footer{width: 100%;
+		background-color: #fb7b4b;
+		opacity: 0.8; 
+		}
+
+		.footer:hover{
+		background-color: #ed551c;
+		opacity: 1.8;
+		}
+		
+		.footer:active{
+		color: #0f0;
+		}
+
+table,th,td
+{
+border:1px solid black;
+border-collapse:collapse;
+}
+
+	</style>
+
+
 	 
 
  </head>
 
-    <body>			
-
-
-		
-		<div id="page1" data-role="page">
+    <body>
+	<div id="page1" data-role="page">
 
 				<header data-role="header" data-position="fixed">
-		
 					<h1>CALORIE INTAKE REMINDER</h1>
-		
 				</header>
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
-						<li><a href="#newCalorie" data-transition="pop">New</a></li>
-						<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>
 						
-
+						<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>
 						<li><a href="share.html" rel="external">Sharing</a></li>
-				
+					</ul>
+				</section>
 				<img src="img/bg.jpg" id="bg" alt="" />
 				
-				<section data-role="content">
-				</section>
-
-
-				
+			
 				<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie" data-transition="pop" data-icon="edit">New</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
 							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
@@ -448,10 +395,7 @@ text-decoration:none;
 				</div>
 
 		</div>
-			
-	
-		
-		
+
 	
 	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
 		<header data-role="header" data-position="fixed">
@@ -462,18 +406,19 @@ text-decoration:none;
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
 	
 		 <table id="localTable" border="1">
-            <thead>
-                <tr>
-                    <th>Old Calorie</th>
-                    <th>New Calorie</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
+			    <thead>
+				<tr>
+				    <th>Old Calorie</th>
+				    <th>New Calorie</th>
+				    <th></th>
+				</tr>
+			    </thead>
+			    <tbody>
+			    </tbody>
 			
-        </table>
-	<input type="button" value="Update Chart" onClick="window.location.reload()">
+        	</table>
+	
+		<input type="button" value="Update Chart" onClick="window.location.reload()"/>
 
         </div>
 	
@@ -490,51 +435,66 @@ text-decoration:none;
 		<p></p>
 		  </div>
 
-
 	</div> 
 		
 	<!--database try-->
 
-	<script src="js/database.js" type="text/javascript"></script>
-	   <script type="text/javascript" src="cordova.js"></script>
-          
-
-
-	<script type="text/javascript">
-            app.initialize();
-        </script>
-
- 	<!--New CIR Menu-->
+	
+	<!--New CIR Menu-->
  	<div id="newCalorie" class="app" data-role="page">
         
-      	<header data-role="header" data-position="fixed">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
-			<h1></h1>
-	</header>
-		
-		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">View Records</a></p>
+	      	<header data-role="header" data-position="fixed">
+			<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
+				<h1></h1>
+		</header>
+
+		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">Beverage List</a></p>
 		<p ><a href="#addBeverage" data-role="button">Add Beverage</a></p>
+
+		<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#newCalorie" class="ui-state-persist ui-btn-active" data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+				</div>
         </div>
-	<!--End: New CIR Menu-->
+	<!--End New CIR Menu-->
 
-
-       <!--View Beverage List-->
+        <!--Beverage List-->
         <div data-role="page" id="beverageList" data-add-back-btn="true">
             <div data-role="header">
                 <h1>Beverage List</h1>
             </div>
+		<p>Select a beverage:</p>
             <div data-role="content">
-                <div id="output">
-                    
-                    </div>
+		        <div id="output">    
+		        </div>
                     
                     <ul data-role="listview" id="resultList">
-                    
                     </ul>
-                </div>
-                
             </div>
-	<!--End: View Beverage List -->
+
+	<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+				</div>
+
+        </div>
+	<!--End-Beverage List-->
 
 	<!--Add Beverage-->
 	<div id="addBeverage" data-role="page" >
@@ -542,30 +502,38 @@ text-decoration:none;
 				<a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a>
 				<h1>New Beverage</h1>
 			</header>
-			
-		
+
 			  <form method="POST" onsubmit="return addBeverage()" id="addBeverageForm" data-ajax="false">
-				<input type="text" name="beverageName" class="" placeholder="Beverage Name" data-mini="true" />
-				
-				
+				<input type="text" id="beverageName" class="" placeholder="Beverage Name" data-mini="true" />
+		
 				<div>
 				<label for="Calorie Per Volume">Calorie Per Volume:</label>
-				<input type="text" name="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" />
-				<input type="text" name="calorieVolume" class="numberinput" placeholder="Enter volume"  data-mini="true"/>
-				<select name="calorieVolumeUnit" data-mini="true"/>
+				<input type="text" id="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" />
+				<input type="text" id="calorieVolume" class="numberinput" placeholder="Enter volume"  data-mini="true"/>
+				<select id="calorieVolumeUnit" data-mini="true">
 				<option value=1>ml</option>
 				<option value=2>L</option>
 				<option value=3>oz</option>
 				</select>
 				</div>
-				
-	
- 			<input type="submit" value="Submit" data-theme="b">
-                             
+			
+ 			<input type="submit" value="Submit" data-theme="b"/>   
 			</form>
-	
-		</div>
-	<!--End: Add Beverage-->
+
+			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+				</div>
+	</div>
+	<!--End-Add Beverage-->
 
 	<!--Calculate Calorie-->
 	<div data-role="page" id="inputCalorie" data-add-back-btn="true">
@@ -573,51 +541,74 @@ text-decoration:none;
                 <h1>Know Your Calories</h1>
             </div>
        
-		  <form method="POST" onsubmit="return calculateCalories2()"  data-ajax="false">
+		  <form method="POST" onsubmit="return calculateCalories2()" id="calculateCaloriesForm" data-ajax="false">
 				
-				<input type="hidden" name="beverageName" id="beverage" data-mini="true" />
-				<input type="hidden" name="caloriePerVolume" id="caloriePerVolume" data-mini="true" />
-				<input type="hidden" name="calorieVolume" id="calorieVolume" data-mini="true" />
+				<input type="hidden" id="beverage2" data-mini="true" />
+				<input type="hidden"  id="caloriePerVolume2" data-mini="true" />
+				<input type="hidden"  id="calorieVolume2" data-mini="true" />
 				
-				<input type="text" name="members" id="members" class="numberinput" placeholder="Group Members" data-mini="true" />
+				<input type="text"  id="members2" class="numberinput" placeholder="Group Members" data-mini="true" />
 	
-				<input type="text" name="quantity" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true" />
+				<input type="text" id="quantity2" class="numberinput" placeholder="Quantity"  data-mini="true" />
 	
-				<input type="text" name="volume" id="volume" class="numberinput" placeholder="volume"  data-mini="true" />
+				<input type="text" id="volume2" class="numberinput" placeholder="volume"  data-mini="true" />
 			
-				<select name="volumeUnit" id="volumeUnit" data-mini="true"/>
+				<select  id="volumeUnitNew" data-mini="true">
 				<option value=1>ml</option>
 				<option value=2>L</option>
 				<option value=3>oz</option>
 				</select>
 
- 			<input type="submit" value="Calculate" data-theme="b">
+ 			<input type="submit" value="Calculate" data-theme="b"/>
                              
 			</form>
+
+		<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+				</div>
 	</div>
-	<!--End: Calculate Calorie-->
+	<!--End Calculate Calorie-->
 
 	<!--Total Calories-->
 	<div data-role="page" id="totalCal" data-add-back-btn="true">
 		<div data-role="header">
-                <h1>Total Calories</h1>
+               		 <h1>Total Calories</h1>
            	 </div>
-
+	
 		<div id="totalCaloriesResult"></div>
 		
-		<!--Advice-->
+		
 		<a type="button" id="popupBoxOpen"><h1>Advice</h1></a>		
 				
 				<div id="popup_box">
 					<h1 id="adviceResult"></h1>
 					<a id="popupBoxClose">Close</a>	
 				</div>
-		<!--End: Advice-->
-
+		
+		<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+						</ul>
+            
+					</div>
+				</div>
 	</div>
-	<!--End:Total Calories-->
+	<!--End Total Calories-->
 
-<!--end-->
 
 <!--MANUAL CONTENT-->
 		<div id="manual" data-role = "page">
