@@ -349,6 +349,8 @@ border-collapse:collapse;
  </head>
 
     <body>
+
+	<!--Main Page-->
 	<div id="page1" data-role="page">
 
 				<header data-role="header" data-position="fixed">
@@ -379,6 +381,7 @@ border-collapse:collapse;
 				</div>
 			
 		</div>
+		<!--End: Main Page-->
 			
 			
 		<!--View Records Pop-up-->
@@ -387,16 +390,17 @@ border-collapse:collapse;
 					<h1>View Records</h1>
 				  </div>
 				<h1 style="color:white;">Display:</h1>   
-				<h2><a href="#localStorageDiv" data-role="button">Table</a></h2>
-				<h2><a href="#localStorageDiv" data-role="button">Graph</a></h2>
+				<h2><a href="#localStorageDiv" data-role="button">Your Calories</a></h2>
+				<h2><a href="#beverageList" data-role="button">Beverage List</a></h2>
 				  
 				<div data-role="footer">
 					<p></p>
 				</div>
 
 		</div>
+		<!--End:View Records Pop-UP-->
 
-	
+	<!--Local Storage: Table-->
 	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
 		<header data-role="header" data-position="fixed">
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
@@ -421,7 +425,9 @@ border-collapse:collapse;
 		<input type="button" value="Update Chart" onClick="window.location.reload()"/>
 
         </div>
+	<!--End: Local Storage: Table -->
 	
+	<!--Confirm Clear-->
 	<div id="confirmClear" data-role="page" >
 	 
 		 <div data-role="header">
@@ -436,8 +442,8 @@ border-collapse:collapse;
 		  </div>
 
 	</div> 
+	<!--End: Confirm Clear-->
 		
-	<!--database try-->
 
 	
 	<!--New CIR Menu-->
@@ -585,29 +591,25 @@ border-collapse:collapse;
            	 </div>
 	
 		<div id="totalCaloriesResult"></div>
+		<a href="#adviceDiv" data-role="button" data-transition="slidedown" data-rel="dialog"><h1>Advice</h1></a>		
+		</div>
 		
-		
-		<a type="button" id="popupBoxOpen"><h1>Advice</h1></a>		
-				
-				<div id="popup_box">
-					<h1 id="adviceResult"></h1>
-					<a id="popupBoxClose">Close</a>	
-				</div>
-		
-		<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
-					<div data-id="mainTab" data-role="navbar">
-						<ul id="footer_tabs">
-							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
-							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
-						</ul>
-            
-					</div>
-				</div>
-	</div>
 	<!--End Total Calories-->
+
+	<!--Advice-->
+	<div id="adviceDiv" data-role="page" >
+			 
+				 <div data-role="header">
+				    <h1>Advice</h1>
+				  </div>
+			   	 <h1 style="color:white;" id="adviceResult"></h1>   
+			  
+				<div data-role="footer">
+				<p></p>
+				  </div>
+
+			</div> 
+	<!--End: Advice-->
 
 
 <!--MANUAL CONTENT-->
