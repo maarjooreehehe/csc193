@@ -482,7 +482,7 @@ border-collapse:collapse;
 		        <div id="output">    
 		        </div>
                     
-                    <ul data-role="listview" id="resultList">
+                    <ul data-role="listview" id="resultList" data-inset="true">
                     </ul>
             </div>
 
@@ -609,7 +609,7 @@ border-collapse:collapse;
 				  </div>
 
 			</div> 
-	<!End: Advice-->
+	<!--End: Advice-->
 
 
 <!--MANUAL CONTENT-->
@@ -621,9 +621,6 @@ border-collapse:collapse;
 			</header>
 
 			<div id="" style="background-color:#FFD700;height:100px;width:300px;float:left;">
-
-	
-			
 			<h2><a href="#intakeCal" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">New Record</a></h2>
 			<h2><a href="#viewRecord" data-transition="slidedown" data-rel="dialog">View Records</a></h2>
 			<h2><a href="#DataGraph" data-transition="slidedown" data-rel ="dialog">Data Graph</a></h2>
