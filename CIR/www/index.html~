@@ -24,8 +24,11 @@
 		<script src="scripts/visualize.jQuery.js" type="text/javascript"></script>
 		<script src="scripts/example.js" type="text/javascript"></script>
 	
-	<script src="js/database.js" type="text/javascript"></script>
+	   <script src="js/database.js" type="text/javascript"></script>
 	   <script type="text/javascript" src="cordova.js"></script>
+
+           <script type="text/javascript" src="js/SocialSharing.js"></script>
+	
 
 	
 
@@ -354,14 +357,16 @@ border-collapse:collapse;
 	<div id="page1" data-role="page">
 
 				<header data-role="header" data-position="fixed">
-					<h1>CALORIE INTAKE REMINDER</h1>
+					<h1>Calorie Reminder</h1>
 				</header>
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
 						
-						<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>
+						
 						<li><a href="share.html" rel="external">Sharing</a></li>
+
+<!--<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>-->
 					</ul>
 				</section>
 				<img src="img/bg.jpg" id="bg" alt="" />
@@ -372,8 +377,8 @@ border-collapse:collapse;
 						<ul id="footer_tabs">
 							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie" data-transition="pop" data-icon="edit">New</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -405,7 +410,7 @@ border-collapse:collapse;
 		<header data-role="header" data-position="fixed">
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
 			<h1>DATA TABLE</h1>
-		<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
+		<a href="#viewRecords" data-icon="back" data-theme="b" data-transition="pop">BACK</a>
 		</header>
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
 	
@@ -462,8 +467,8 @@ border-collapse:collapse;
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie" class="ui-state-persist ui-btn-active" data-transition="pop" data-icon="edit">New</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -482,7 +487,7 @@ border-collapse:collapse;
 		        <div id="output">    
 		        </div>
                     
-                    <ul data-role="listview" id="resultList" data-inset="true">
+                    <ul data-role="listview" id="resultList" data-inset="true" data-filter="true" data-filter-placeholder="Search Beverage...">
                     </ul>
             </div>
 
@@ -491,8 +496,8 @@ border-collapse:collapse;
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -531,8 +536,8 @@ border-collapse:collapse;
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -574,8 +579,8 @@ border-collapse:collapse;
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
