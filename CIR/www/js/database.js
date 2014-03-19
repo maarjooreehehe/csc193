@@ -12,7 +12,7 @@
                 }
                 
                 function createDB(tx){
-		 tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (beverage, caloriePerVolume, calorieVolume)');
+		 tx.executeSql('CREATE TABLE IF NOT EXISTS BEVERAGE (beverageName, caloriePerVolume, calorieVolume)');
                 }
 
           function errorCB(err){
@@ -40,13 +40,13 @@
 					var _calorieVolume=$("#calorieVolume").val();
 				}
 			
-		      	var sql ='INSERT INTO DEMO (beverage, caloriePerVolume, calorieVolume) VALUES (?,?,?)';
+		      	var sql ='INSERT INTO BEVERAGE(beverageName, caloriePerVolume, calorieVolume) VALUES (?,?,?)';
 		      	tx.executeSql(sql,[_beverage, _caloriePerVolume, _calorieVolume],sucessQueryDB,errorCB);
          	}
           
           function sucessQueryDB(tx){
              
-              tx.executeSql('SELECT * FROM DEMO', [], renderList, errorCB);
+              tx.executeSql('SELECT * FROM BEVERAGE', [], renderList, errorCB);
               
           }
           function renderList(tx,results){
@@ -54,7 +54,7 @@
             		var len = results.rows.length;
             		//alert("Items saved:" +len);
               		for(var i=0;i<len;i++){
-				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverage+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')" > Name:' + results.rows.item(i).beverage + '<br/> '+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL</a></li>'
+				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverageName+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')" > Name:' + results.rows.item(i).beverageName + '<br/> '+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL</a></li>'
              	 }
 
 			      $('#resultList').html(htmlstring);
@@ -119,7 +119,8 @@
 			burntCalorie = parseInt( (totalCalories - ((totalCalories*20)/100)) ,10);
 			water = Math.round(((((totalCalories-burntCalorie)*1000)/33.5)/240));
 			
-
+			
+			//local storage
 			var key = totalCalories;
 			var value = burntCalorie;
 			localStorage.setItem(key, value);
@@ -131,7 +132,7 @@
 										"<h1>Volume: </h1>"+_volume+" mL <br/>"+
 										"<h1>Total Calories: </h1>"+totalCalories;
 
-			document.getElementById("adviceResult").innerHTML="You can lessen your calorie-intake by 20% by drinking "+water+" glasses of cold water";
+			document.getElementById("adviceResult").innerHTML="<p>You can lessen your calorie-intake by 20% ("+burntCalorie+") by drinking "+water+" glasses of cold water</p>";
 		
 			$.mobile.changePage("#totalCal",{reverse:false,transition:"slide"});
 			return false;

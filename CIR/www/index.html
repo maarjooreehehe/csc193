@@ -346,9 +346,6 @@ border-collapse:collapse;
 
 	</style>
 
-
-	 
-
  </head>
 
     <body>
@@ -362,8 +359,6 @@ border-collapse:collapse;
 				<section data-role="content">
 					 <ul data-role="listview" data-inset="true" data-shadow="true">
 						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						
-						
 						<li><a href="share.html" rel="external">Sharing</a></li>
 
 <!--<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>-->
@@ -378,7 +373,7 @@ border-collapse:collapse;
 							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie" data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -396,7 +391,7 @@ border-collapse:collapse;
 				  </div>
 				<h1 style="color:white;">Display:</h1>   
 				<h2><a href="#localStorageDiv" data-role="button">Your Calories</a></h2>
-				<h2><a href="#beverageList" data-role="button">Beverage List</a></h2>
+				<h2><a href="#beverageList" data-role="button" onclick="viewBeverageRecords();">Beverage List</a></h2>
 				  
 				<div data-role="footer">
 					<p></p>
@@ -414,7 +409,8 @@ border-collapse:collapse;
 		</header>
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
 	
-		 <table id="localTable" border="1">
+		<div data-role="content">
+		 <table id="localTable" border="1" data-mode="reflow" class="ui-responsive table-stroke">
 			    <thead>
 				<tr>
 				    <th>Old Calorie</th>
@@ -424,8 +420,9 @@ border-collapse:collapse;
 			    </thead>
 			    <tbody>
 			    </tbody>
-			
         	</table>
+		</div>
+		
 	
 		<input type="button" value="Update Chart" onClick="window.location.reload()"/>
 
@@ -468,7 +465,7 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie" class="ui-state-persist ui-btn-active" data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -482,7 +479,7 @@ border-collapse:collapse;
             <div data-role="header">
                 <h1>Beverage List</h1>
             </div>
-		<p>Select a beverage:</p>
+	
             <div data-role="content">
 		        <div id="output">    
 		        </div>
@@ -497,7 +494,7 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -509,24 +506,31 @@ border-collapse:collapse;
 
 	<!--Add Beverage-->
 	<div id="addBeverage" data-role="page" >
-			<header data-role="header" data-position="fixed">
-				<a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a>
+			<div data-role="header" data-position="fixed">
 				<h1>New Beverage</h1>
-			</header>
+			</div>
 
 			  <form method="POST" onsubmit="return addBeverage()" id="addBeverageForm" data-ajax="false">
-				<input type="text" id="beverageName" class="" placeholder="Beverage Name" data-mini="true" />
-		
-				<div>
-				<label for="Calorie Per Volume">Calorie Per Volume:</label>
-				<input type="text" id="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" />
-				<input type="text" id="calorieVolume" class="numberinput" placeholder="Enter volume"  data-mini="true"/>
+				<div class="ui-field-contain">
+				 <label for="beverageName">Name</label>
+				<input type="text" id="beverageName" class="" placeholder="Beverage Name" data-mini="true" style="margin: 0 auto;" />
+				</div>
+				
+				<p>Calorie Per Volume:</p>
+				<div class="ui-field-contain">
+				<label for="caloriePerVolume" class="ui-hidden-accessible">Enter Calorie</label>
+				<input type="text" id="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" data-clear-btn="true" /></div>
+
+				<div class="ui-field-contain">
+				<label for="calorieVolume" class="ui-hidden-accessible">Enter Volume</label>
+				<input type="text" id="calorieVolume" class="numberinput" placeholder="Enter volume"  data-mini="true" data-clear-btn="true"/></div>
+
 				<select id="calorieVolumeUnit" data-mini="true">
 				<option value=1>ml</option>
 				<option value=2>L</option>
 				<option value=3>oz</option>
 				</select>
-				</div>
+				
 			
  			<input type="submit" value="Submit" data-theme="b"/>   
 			</form>
@@ -537,7 +541,7 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -554,10 +558,11 @@ border-collapse:collapse;
        
 		  <form method="POST" onsubmit="return calculateCalories2()" id="calculateCaloriesForm" data-ajax="false">
 				
-				<input type="hidden" id="beverage2" data-mini="true" />
-				<input type="hidden"  id="caloriePerVolume2" data-mini="true" />
-				<input type="hidden"  id="calorieVolume2" data-mini="true" />
+				<input type="text" disabled="disabled" id="beverage2" data-mini="true" />
+				<input type="text" disabled="disabled"  id="caloriePerVolume2" data-mini="true" />
+				<input type="text" disabled="disabled"  id="calorieVolume2" data-mini="true" />
 				
+				<p>Enter Values:</p>
 				<input type="text"  id="members2" class="numberinput" placeholder="Group Members" data-mini="true" />
 	
 				<input type="text" id="quantity2" class="numberinput" placeholder="Quantity"  data-mini="true" />
@@ -580,7 +585,7 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Settings</a></li>
+							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 						</ul>
             
@@ -602,7 +607,7 @@ border-collapse:collapse;
 	<!--End Total Calories-->
 
 	<!--Advice-->
-	<div id="adviceDiv" data-role="page" >
+	<div id="adviceDiv" data-role="page"  >
 			 
 				 <div data-role="header">
 				    <h1>Advice</h1>
@@ -670,9 +675,6 @@ border-collapse:collapse;
 			<div id="" style="background-color:transparent;clear:both;text-align:center;">
 				<a href="index.html" data-role="button" data-icon="check" onclick="clearLocalKeys()">Home</a></div>
 			
-			
-	
-				
 		  </div>
 			
 
