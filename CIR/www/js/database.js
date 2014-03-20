@@ -4,31 +4,28 @@
                 var db;
  
                 
-                function onDeviceReady() {
- 
-                    db = window.openDatabase("Database", "1.0", "Cordova Demo",2*1024*1024);
-                    db.transaction(createDB, errorCB, successCB);
-                    
-                }
+	function onDeviceReady() {
+		db = window.openDatabase("Database", "1.0", "Cordova Demo",2*1024*1024);
+		db.transaction(createDB, errorCB, successCB);
+	}
                 
-                function createDB(tx){
-		 tx.executeSql('CREATE TABLE IF NOT EXISTS BEVERAGE (beverageName, caloriePerVolume, calorieVolume)');
-                }
+	function createDB(tx){
+		tx.executeSql('CREATE TABLE IF NOT EXISTS BEVERAGE (beverageName, caloriePerVolume, calorieVolume)');
+ 		tx.executeSql('CREATE TABLE IF NOT EXISTS CALORIES (beverageN, volume, totalCalories)');
+	}
 
-          function errorCB(err){
-              alert("Error Processing SQL: "+ err.code );
-          }
+	function errorCB(err){
+		alert("Error Processing SQL: "+ err.code );
+	}
           
-          function successCB(){
-             // alert("Database Installation Successfull");
-             
-          }
-         function addBeverageDB(tx){
-            
-			var _beverage = $("#beverageName").val();
-
-			var _calorieVolumeUnit = $("#calorieVolumeUnit").val();
-			var _caloriePerVolume = $("#caloriePerVolume").val();
+	function successCB(){
+	//alert("Database Installation Successfull");
+	}
+         
+	function addBeverageDB(tx){
+		var _beverage = $("#beverageName").val();
+		var _calorieVolumeUnit = $("#calorieVolumeUnit").val();
+		var _caloriePerVolume = $("#caloriePerVolume").val();
 			
 				if(_calorieVolumeUnit==2){
 					var _calorieVolume = ($("#calorieVolume").val() * 1000);
@@ -42,39 +39,45 @@
 			
 		      	var sql ='INSERT INTO BEVERAGE(beverageName, caloriePerVolume, calorieVolume) VALUES (?,?,?)';
 		      	tx.executeSql(sql,[_beverage, _caloriePerVolume, _calorieVolume],sucessQueryDB,errorCB);
-         	}
+         }
           
-          function sucessQueryDB(tx){
-             
-              tx.executeSql('SELECT * FROM BEVERAGE', [], renderList, errorCB);
-              
-          }
-          function renderList(tx,results){
-              		var htmlstring='';
-            		var len = results.rows.length;
-            		//alert("Items saved:" +len);
-              		for(var i=0;i<len;i++){
-				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverageName+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')" > Name:' + results.rows.item(i).beverageName + '<br/> '+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL</a></li>'
+	function sucessQueryDB(tx){
+		tx.executeSql('SELECT * FROM BEVERAGE', [], renderList, errorCB);
+	}
+
+	function renderList(tx,results){
+		var htmlstring='';
+		var len = results.rows.length;
+		//alert("Items saved:" +len);
+		for(var i=0;i<len;i++){
+				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverageName+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')" > <p class="line1">' + results.rows.item(i).beverageName + '</p> <p class="line2">'+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL </p></a></li>'
              	 }
 
 			      $('#resultList').html(htmlstring);
 			      $('#resultList').listview('refresh');
               
-         	 }
+	}
 	
+
 		function viewBeverageRecords(){
 			db.transaction(sucessQueryDB, errorCB);
 			$.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
 			return false;
 		}
 
+	
           
-          
-	//added js
+       
 		function addBeverage(){
                     db.transaction(addBeverageDB, errorCB);
                     $.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
                     return false;
+                }
+
+		function calculateCalories2(){
+                    db.transaction(calculateCal, errorCB);
+                  $.mobile.changePage("#totalCal",{reverse:false,transition:"slide"});
+			return false;
                 }
 
 		function inputCalorie(beverageName, cPV, cV){
@@ -91,7 +94,7 @@
 			return false;
 		}
 
-		function calculateCalories2(){
+		function calculateCal(tx){
 			_beverageName = $("#beverage2").val();
 			_caloriePerVolume = $("#caloriePerVolume2").val();
 			_calorieVolume=$("#calorieVolume2").val();
@@ -125,6 +128,12 @@
 			var value = burntCalorie;
 			localStorage.setItem(key, value);
 
+		
+			var bN = _beverageName;
+			var vL = _volume;
+			var sqlTxt = 'INSERT INTO CALORIES(beverageN, volume, totalCalories) VALUES (?,?,?)';
+			tx.executeSql(sqlTxt, [bN, vL, key]);
+			
 			document.getElementById("totalCaloriesResult").innerHTML="<h1>Beverage: </h1>"+_beverageName+"<br/>"+
 										"<h1>Calories Per Volume: </h1>"+_caloriePerVolume+" calories per "+_calorieVolume+" mL"+
 										"<h1>Members: </h1>" +_members+"<br/>"+
@@ -134,9 +143,41 @@
 
 			document.getElementById("adviceResult").innerHTML="<p>You can lessen your calorie-intake by 20% ("+burntCalorie+") by drinking "+water+" glasses of cold water</p>";
 		
-			$.mobile.changePage("#totalCal",{reverse:false,transition:"slide"});
-			return false;
+			
+		
+		
          	}
+
+		function viewCalorieRecords(){
+			db.transaction(getCaloriesQueryDB, errorCB);
+			$.mobile.changePage("#calorieList",{reverse:false,transition:"slide"});
+			return false;
+		}
+
+
+		function getCaloriesQueryDB(tx){
+             		tx.executeSql('SELECT * FROM CALORIES', [], renderCalorieList, errorCB);
+              	}
+
+		function renderCalorieList(tx,results){
+              		var htmlstring='';
+            		var len = results.rows.length;
+			var totalC = 0;
+            		//alert("Items saved:" +len);
+              		for(var i=0;i<len;i++){
+				var rec = results.rows.item(i);
+				totalC = totalC + rec.totalCalories;
+				htmlstring+='<li>' +
+				'<p class="line1">' + rec.beverageN + '</p>' +
+				'<p class="line2">' + rec.volume + ' mL</p>' +
+				'<span class="bubble">' + rec.totalCalories + '</span></li>';
+             	 }
+	
+				$('#totalCalo').html('<h1>Total Calories-Intake: '+totalC+'</h1>');
+			      $('#calorieResultList').html(htmlstring);
+			      $('#calorieResultList').listview('refresh');
+              
+         	 }
 
 
 

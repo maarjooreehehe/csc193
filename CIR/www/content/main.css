@@ -30,3 +30,85 @@ td
 
 }
 
+.header {
+	position:  absolute;
+ 	text-align: center;
+ 	background: #666666; /* for non-css3 browsers */
+	background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#666666), color-stop(.6,#333));
+	color: #FFFFFF;
+	top: 0px; 
+	height: 40px;
+	width: 100%;
+	border-bottom: solid 1px #444444;
+}
+
+.header > h1 {
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.header > .nav {
+	position: absolute;
+	left: 12px;
+	height:100%;
+	padding-top: 12px;
+	padding-right: 12px;
+	border-right: solid 1px #333333;
+}
+
+.header a { 
+	text-decoration:none;
+	color: #FFFFFF;
+}
+
+li .line1 {
+	font-size: 16px;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:10px;
+	padding-bottom:0px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+li .line2 {
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	color: #666666;
+}
+
+li .bubble {
+	clear:both;
+	position: absolute;
+	right: 12px;
+    background-color: #ECEFF2;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+	font-size:14px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin: 0px;
+	margin-top: -50px;
+	text-align: center;
+}
+
+#wrapper {
+	position: absolute; 
+	top: 82px; 
+	bottom: 0px;
+	width: 100%;
+	overflow: auto;
+}
+
+#beverageDetails {
+	padding: 8px;
+	padding-bottom: 0px;
+}
+
