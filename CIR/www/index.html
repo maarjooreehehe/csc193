@@ -390,9 +390,9 @@ border-collapse:collapse;
 					<h1>View Records</h1>
 				  </div>
 				<h1 style="color:white;">Display:</h1>   
-				<h2><a href="#localStorageDiv" data-role="button">Your Calories</a></h2>
+				<h2><a href="#localStorageDiv" data-role="button">Records Table</a></h2>
 				<h2><a href="#beverageList" data-role="button" onclick="viewBeverageRecords();">Beverage List</a></h2>
-				  
+				<h2><a href="#calorieList" data-role="button" onclick="viewCalorieRecords();">Calorie Records</a></h2> 
 				<div data-role="footer">
 					<p></p>
 				</div>
@@ -402,11 +402,10 @@ border-collapse:collapse;
 
 	<!--Local Storage: Table-->
 	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
-		<header data-role="header" data-position="fixed">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
-			<h1>DATA TABLE</h1>
-		<a href="#viewRecords" data-icon="back" data-theme="b" data-transition="pop">BACK</a>
-		</header>
+		  <div data-role="header">
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="nav">HOME</a>
+                <h1>Records Table</h1>
+            </div>
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
 	
 		<div data-role="content">
@@ -451,10 +450,10 @@ border-collapse:collapse;
 	<!--New CIR Menu-->
  	<div id="newCalorie" class="app" data-role="page">
         
-	      	<header data-role="header" data-position="fixed">
-			<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
-				<h1></h1>
-		</header>
+	      	  <div data-role="header" >
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+                <h1>Menu</h1>
+           	 </div>
 
 		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">Beverage List</a></p>
 		<p ><a href="#addBeverage" data-role="button">Add Beverage</a></p>
@@ -476,7 +475,8 @@ border-collapse:collapse;
 
         <!--Beverage List-->
         <div data-role="page" id="beverageList" data-add-back-btn="true">
-            <div data-role="header">
+              <div data-role="header">
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>Beverage List</h1>
             </div>
 	
@@ -504,19 +504,46 @@ border-collapse:collapse;
         </div>
 	<!--End-Beverage List-->
 
+	<!--CALORIE List-->
+        <div data-role="page" id="calorieList" data-add-back-btn="true">
+        
+	  	<div data-role="header">
+			<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+		        <h1>Calorie Records</h1>
+            	</div>
+
+		
+	
+            <div data-role="content">
+		      <div id="totalCalo" align="right">
+		</div>
+                    
+                    <ul data-role="listview" id="calorieResultList" data-inset="true">
+                    </ul>
+            </div>
+
+	
+
+        </div>
+	<!--End-CALORIE List-->
+
 	<!--Add Beverage-->
 	<div id="addBeverage" data-role="page" >
-			<div data-role="header" data-position="fixed">
-				<h1>New Beverage</h1>
-			</div>
+
+		<div data-role="header">
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+                <h1>New Beverage</h1>
+            	</div>
+		
 
 			  <form method="POST" onsubmit="return addBeverage()" id="addBeverageForm" data-ajax="false">
+			<div id="beverageDetails">				
 				<div class="ui-field-contain">
 				 <label for="beverageName">Name</label>
 				<input type="text" id="beverageName" class="" placeholder="Beverage Name" data-mini="true" style="margin: 0 auto;" />
 				</div>
 				
-				<p>Calorie Per Volume:</p>
+				<h1>Calorie Per Volume:</h1>
 				<div class="ui-field-contain">
 				<label for="caloriePerVolume" class="ui-hidden-accessible">Enter Calorie</label>
 				<input type="text" id="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" data-clear-btn="true" /></div>
@@ -532,7 +559,8 @@ border-collapse:collapse;
 				</select>
 				
 			
- 			<input type="submit" value="Submit" data-theme="b"/>   
+ 			<input type="submit" value="Submit" data-theme="b"/>  
+			</div> 
 			</form>
 
 			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
@@ -553,16 +581,22 @@ border-collapse:collapse;
 	<!--Calculate Calorie-->
 	<div data-role="page" id="inputCalorie" data-add-back-btn="true">
             <div data-role="header">
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>Know Your Calories</h1>
             </div>
        
 		  <form method="POST" onsubmit="return calculateCalories2()" id="calculateCaloriesForm" data-ajax="false">
 				
-				<input type="text" disabled="disabled" id="beverage2" data-mini="true" />
-				<input type="text" disabled="disabled"  id="caloriePerVolume2" data-mini="true" />
-				<input type="text" disabled="disabled"  id="calorieVolume2" data-mini="true" />
 				
-				<p>Enter Values:</p>
+				<h1>Beverage Information</h1>
+	  					<div id="beverageDetails">
+	       					<input type="text" disabled="disabled" id="beverage2" data-mini="true" />
+						<input type="text" disabled="disabled"  id="caloriePerVolume2" data-mini="true" />
+						<input type="text" disabled="disabled"  id="calorieVolume2" data-mini="true" />
+	  					</div>
+	  			
+
+				<h1>Enter Values Here:</h1>
 				<input type="text"  id="members2" class="numberinput" placeholder="Group Members" data-mini="true" />
 	
 				<input type="text" id="quantity2" class="numberinput" placeholder="Quantity"  data-mini="true" />
@@ -575,11 +609,13 @@ border-collapse:collapse;
 				<option value=3>oz</option>
 				</select>
 
- 			<input type="submit" value="Calculate" data-theme="b"/>
+ 				<input type="submit" value="Calculate" data-theme="b"/>
                              
+			
 			</form>
+			
 
-		<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
@@ -590,19 +626,22 @@ border-collapse:collapse;
 						</ul>
             
 					</div>
-				</div>
+			</div>
 	</div>
 	<!--End Calculate Calorie-->
 
 	<!--Total Calories-->
 	<div data-role="page" id="totalCal" data-add-back-btn="true">
-		<div data-role="header">
-               		 <h1>Total Calories</h1>
-           	 </div>
-	
-		<div id="totalCaloriesResult"></div>
-		<a href="#adviceDiv" data-role="button" data-transition="slidedown" data-rel="dialog"><h1>Advice</h1></a>		
-		</div>
+  		<div data-role="header">
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+                <h1>Total Calories</h1>
+            	</div>
+
+		<div id="beverageDetails">
+			<div id="totalCaloriesResult"></div>
+			<a href="#adviceDiv" data-role="button" data-transition="slidedown" data-rel="dialog"><h1>Advice</h1></a>	
+		</div>	
+	</div>
 		
 	<!--End Total Calories-->
 
@@ -620,7 +659,6 @@ border-collapse:collapse;
 
 			</div> 
 	<!--End: Advice-->
-
 
 <!--MANUAL CONTENT-->
 		<div id="manual" data-role = "page">
