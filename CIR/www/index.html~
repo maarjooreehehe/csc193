@@ -355,14 +355,7 @@ border-collapse:collapse;
 				<header data-role="header" data-position="fixed">
 					<h3>C.I.R.</h3>
 				</header>
-				<section data-role="content">
-					 <ul data-role="listview" data-inset="true" data-shadow="true">
-					
-					
 
-<!--<li><a href="#manual" data-transition="slidedown" data-rel="dialog">Manual</a></li>-->
-					</ul>
-				</section>
 				<img src="img/bg.jpg" id="bg" alt="" />
 				
 			
@@ -374,7 +367,7 @@ border-collapse:collapse;
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 							
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
-							<li><a href="share.html" rel="external">Sharing</a></li>
+							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
 
 						</ul>
             
@@ -407,13 +400,9 @@ border-collapse:collapse;
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="nav">HOME</a>
                 <h1>Records Table</h1>
             </div>
-<<<<<<< HEAD
-=======
-		<a href="share.html" data-role="button" rel="external">Sharing</a>
->>>>>>> d65aaaa64373e0f849d91f704b92970d3453262b
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
 	
-		<div data-role="content">
+	
 		 <table id="localTable" border="1" data-mode="reflow" class="ui-responsive table-stroke">
 			    <thead>
 				<tr>
@@ -425,7 +414,6 @@ border-collapse:collapse;
 			    <tbody>
 			    </tbody>
         	</table>
-		</div>
 		
 	
 		<input type="button" value="Update Chart" onClick="window.location.reload()"/>
@@ -469,8 +457,9 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie" class="ui-state-persist ui-btn-active" data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 						</ul>
             
 					</div>
@@ -499,8 +488,9 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 						</ul>
             
 					</div>
@@ -544,7 +534,7 @@ border-collapse:collapse;
 			  <form method="POST" onsubmit="return addBeverage()" id="addBeverageForm" data-ajax="false">
 			<div id="beverageDetails">				
 				<div class="ui-field-contain">
-				 <label for="beverageName">Name</label>
+				 <h1><label for="beverageName">Name</label></h1>
 				<input type="text" id="beverageName" class="" placeholder="Beverage Name" data-mini="true" style="margin: 0 auto;" />
 				</div>
 				
@@ -574,8 +564,9 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
-							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+								<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 						</ul>
             
 					</div>
@@ -626,8 +617,9 @@ border-collapse:collapse;
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
-							<li><a href="#manual" data-transition="slidedown" data-rel="dialog" data-icon="arrow-r">Manual</a></li>
-							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+						<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 						</ul>
             
 					</div>
