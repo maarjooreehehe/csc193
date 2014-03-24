@@ -396,10 +396,11 @@ border-collapse:collapse;
 
 	<!--Local Storage: Table-->
 	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
-		  <div data-role="header">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="nav">HOME</a>
+		  <header data-role="header">
+		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>Records Table</h1>
-            </div>
+            </header>
+		
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
 	
 	
@@ -417,6 +418,7 @@ border-collapse:collapse;
 		
 	
 		<input type="button" value="Update Chart" onClick="window.location.reload()"/>
+		
 
         </div>
 	<!--End: Local Storage: Table -->
@@ -443,10 +445,10 @@ border-collapse:collapse;
 	<!--New CIR Menu-->
  	<div id="newCalorie" class="app" data-role="page">
         
-	      	  <div data-role="header" >
+	      	  <header data-role="header" >
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>Menu</h1>
-           	 </div>
+           	 </header>
 
 		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">Beverage List</a></p>
 		<p ><a href="#addBeverage" data-role="button">Add Beverage</a></p>
@@ -469,10 +471,10 @@ border-collapse:collapse;
 
         <!--Beverage List-->
         <div data-role="page" id="beverageList" data-add-back-btn="true">
-              <div data-role="header">
+              <header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>Beverage List</h1>
-            </div>
+            </header>
 	
             <div data-role="content">
 		        <div id="output">    
@@ -502,10 +504,10 @@ border-collapse:collapse;
 	<!--CALORIE List-->
         <div data-role="page" id="calorieList" data-add-back-btn="true">
         
-	  	<div data-role="header">
+	  	<header data-role="header">
 			<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
 		        <h1>Calorie Records</h1>
-            	</div>
+            	</header>
 
 		
 	
@@ -525,10 +527,10 @@ border-collapse:collapse;
 	<!--Add Beverage-->
 	<div id="addBeverage" data-role="page" >
 
-		<div data-role="header">
+		<header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>New Beverage</h1>
-            	</div>
+            	</header>
 		
 
 			  <form method="POST" onsubmit="return addBeverage()" id="addBeverageForm" data-ajax="false">
@@ -577,10 +579,10 @@ border-collapse:collapse;
 
 	<!--Calculate Calorie-->
 	<div data-role="page" id="inputCalorie" data-add-back-btn="true">
-            <div data-role="header">
+            <header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>Know Your Calories</h1>
-            </div>
+            </header>
        
 		  <form method="POST" onsubmit="return calculateCalories2()" id="calculateCaloriesForm" data-ajax="false">
 				
@@ -630,10 +632,10 @@ border-collapse:collapse;
 
 	<!--Total Calories-->
 	<div data-role="page" id="totalCal" data-add-back-btn="true">
-  		<div data-role="header">
+  		<header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
                 <h1>Total Calories</h1>
-            	</div>
+            	</header>
 
 		<div id="beverageDetails">
 			<div id="totalCaloriesResult"></div>
@@ -734,10 +736,9 @@ border-collapse:collapse;
 			<div id="" style="background-color:#EEEEEE;height:310px;width:295px;float:left;">
 				<center><h2>Provide the required data such as<br> 
 				            number of person who joined the<br>
-				            drinking session, number of beer <br>
-	 			            they drink, volume of the beer,<br>
-				            and percentage of calorie the he <br>
-					 wants to burn.Press the button "Save".<br>
+				            drinking session, number of beverage <br>
+	 			            they drink, and volume.<br>
+				            Press the button "Save".<br>
 				  <p><img border="0" src="img/calculation.jpg" width="270" height="150"></p>
 				</center></h2>
 
