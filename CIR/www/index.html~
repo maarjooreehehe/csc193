@@ -227,6 +227,12 @@
 
 	
 	<style type="text/css">
+	.ui-page{
+    background:url("img/bg.jpg") no-repeat;
+    background-size:cover;
+ 
+}
+
 /* popup_box DIV-Styles*/
 #popup_box { 
 	display:none; /* Hide the DIV */
@@ -350,23 +356,23 @@ border-collapse:collapse;
     <body>
 
 	<!--Main Page-->
-	<div id="page1" data-role="page">
+	<div id="page1" data-role="page" data-add-back-btn="true">
 
 				<header data-role="header" data-position="fixed">
 					<h3>C.I.R.</h3>
 				</header>
-
-				<img src="img/bg.jpg" id="bg" alt="" />
 				
-			
+<div data-role="content" id="beverageDetails">
+				<img src="img/logo2.png"  width="400" />
+			</div>
 				<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#newCalorie" data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="#newCalorie" data-transition="turn" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 							
-							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a href="#about" data-transition="slide" data-rel ="dialog" data-icon="info">About</a></li>
 							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
 
 						</ul>
@@ -397,7 +403,7 @@ border-collapse:collapse;
 	<!--Local Storage: Table-->
 	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
 		  <header data-role="header">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Records Table</h1>
             </header>
 		
@@ -446,10 +452,10 @@ border-collapse:collapse;
  	<div id="newCalorie" class="app" data-role="page">
         
 	      	  <header data-role="header" >
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Menu</h1>
            	 </header>
-<img src="img/bg.jpg" id="bg" alt="" />
+
 		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">Beverage List</a></p>
 		<p ><a href="#addBeverage" data-role="button">Add Beverage</a></p>
 
@@ -472,7 +478,7 @@ border-collapse:collapse;
         <!--Beverage List-->
         <div data-role="page" id="beverageList" data-add-back-btn="true">
               <header data-role="header">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Beverage List</h1>
             </header>
 	
@@ -505,7 +511,7 @@ border-collapse:collapse;
         <div data-role="page" id="calorieList" data-add-back-btn="true">
         
 	  	<header data-role="header">
-			<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+			<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
 		        <h1>Calorie Records</h1>
             	</header>
 
@@ -528,7 +534,7 @@ border-collapse:collapse;
 	<div id="addBeverage" data-role="page" >
 
 		<header data-role="header">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>New Beverage</h1>
             	</header>
 		
@@ -564,8 +570,8 @@ border-collapse:collapse;
 			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
-							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="turn">Home</a></li>
+							<li><a href="#newCalorie"  data-transition="turn" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 								<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
 							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
@@ -580,7 +586,7 @@ border-collapse:collapse;
 	<!--Calculate Calorie-->
 	<div data-role="page" id="inputCalorie" data-add-back-btn="true">
             <header data-role="header">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Know Your Calories</h1>
             </header>
        
@@ -633,7 +639,7 @@ border-collapse:collapse;
 	<!--Total Calories-->
 	<div data-role="page" id="totalCal" data-add-back-btn="true">
   		<header data-role="header">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop" class="">HOME</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Total Calories</h1>
             	</header>
 
@@ -641,24 +647,23 @@ border-collapse:collapse;
 			<div id="totalCaloriesResult"></div>
 			<a href="#adviceDiv" data-role="button" data-transition="slidedown" data-rel="dialog"><h1>Advice</h1></a>	
 		</div>	
+		
+		
 	</div>
 		
 	<!--End Total Calories-->
 
 	<!--Advice-->
-	<div id="adviceDiv" data-role="page"  >
-			 
-				 <div data-role="header">
-				    <h1>Advice</h1>
-				  </div>
-			   	 <h1 style="color:white;" id="adviceResult"></h1>   
-			  
-				<div data-role="footer">
-				<p></p>
-				  </div>
+		<div id="adviceDiv" data-role="page"  >
+				 <header data-role="header">
+					<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
+					<h1>Advice</h1>
+				    	</header>
+		 <h1 style="color:white;" id="adviceResult"></h1>   
 
-			</div> 
-	<!--End: Advice-->
+				</div> 
+		<!--End: Advice-->
+	
 
 <!--MANUAL CONTENT-->
 		<div id="manual" data-role = "page">

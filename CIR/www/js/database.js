@@ -141,7 +141,7 @@
 										"<h1>Volume: </h1>"+_volume+" mL <br/>"+
 										"<h1>Total Calories: </h1>"+totalCalories;
 
-			document.getElementById("adviceResult").innerHTML="<p>You can lessen your calorie-intake by 20% ("+burntCalorie+") by drinking "+water+" glasses of cold water</p>";
+			document.getElementById("adviceResult").innerHTML="<p>Your total calories is: "+totalCalories+". You can lessen your calorie-intake by 20% ("+burntCalorie+") by drinking "+water+" glasses of cold water</p>";
 		
 			
 		
