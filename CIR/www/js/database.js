@@ -79,7 +79,9 @@
 			_caloriePerVolume = $("#caloriePerVolume").val();
 
 			if(_beverage=='' || _calorieVolumeUnit=='' || _caloriePerVolume==''){
-			alert("Please fill all fields.");			
+				alert("Please fill-out all fields.");	
+				$.mobile.changePage("#addBeverage",{reverse:false,transition:"slide"});
+		            	return false;		
 			}
 
 			else{
@@ -97,7 +99,23 @@
 			_volumeUnit = $("#volumeUnitNew").val();
 
 			if(_members=='' || _quantity=='' || _volumeUnit==''){
-			alert("Please fill all fields.");			
+				_beverageName = $("#beverage2").val();
+				_caloriePerVolume = $("#caloriePerVolume2").val();
+				_calorieVolume=$("#calorieVolume2").val();
+
+				var _beverage = document.getElementById("beverage2");
+				_beverage.value = _beverageName;
+
+				var _cPV = document.getElementById("caloriePerVolume2");
+				_cPV.value = _caloriePerVolume;
+
+				var _cV = document.getElementById("calorieVolume2");
+				_cV.value = _calorieVolume;
+
+				alert("Please fill-out all fields.");
+				$.mobile.changePage("#inputCalorie",{reverse:false,transition:"slide"});
+				return false;	
+				
 			}
 
 			else{
