@@ -403,7 +403,7 @@ border-collapse:collapse;
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear</a>
 	
             </header>
-
+<center>
 		 <table id="localTable" align="center" border="1" data-mode="reflow" class="ui-responsive table-stroke" style="width:80%">
 			    <thead>
 				<tr>
@@ -415,7 +415,7 @@ border-collapse:collapse;
 			    <tbody>
 			    </tbody>
         	</table>
-		
+</center>		
 	
 		<input type="button" value="Update Chart" onClick="window.location.reload()"/>
 		
@@ -673,7 +673,7 @@ border-collapse:collapse;
 		    <h1>Confirm</h1>
 		  </div>
 	   	 <h1 style="color:white;">Are you sure you want to clear all contents?</h1>   
-	  	<h2><a href="" data-role="button" data-icon="check" onclick="clearCalories()">Yes</a></h2>
+	  	<h2><a href="javascript:clearCalories()" data-role="button" data-icon="check" onclick="" onClick="window.location.reload()">Yes</a></h2>
 	    	<h2><a href="#calorieList" data-role="button" data-icon="delete">Cancel</a></h2>
 		  
 		<div data-role="footer">

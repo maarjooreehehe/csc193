@@ -186,12 +186,12 @@
 			var sqlTxt = 'INSERT INTO CALORIES(beverageN, volume, totalCalories) VALUES (?,?,?)';
 			tx.executeSql(sqlTxt, [bN, vL, key]);
 			
-			document.getElementById("totalCaloriesResult").innerHTML="<h1>Beverage: </h1>"+_beverageName+"<br/>"+
-										"<h1>Calories Per Volume: </h1>"+_caloriePerVolume+" calories per "+_calorieVolume+" mL"+
-										"<h1>Members: </h1>" +_members+"<br/>"+
-										"<h1>Quantity: </h1>"+_quantity+"<br/>"+
-										"<h1>Volume: </h1>"+_volume+" mL <br/>"+
-										"<h1>Total Calories: </h1>"+totalCalories;
+			document.getElementById("totalCaloriesResult").innerHTML="<h1>Beverage: "+_beverageName+"</h1><p/>"+
+										"<h1>Calories Per Volume: "+_caloriePerVolume+" calories per "+_calorieVolume+" mL</h1><p/>"+
+										"<h1>Members: " +_members+"</h1><p/>"+
+										"<h1>Quantity: "+_quantity+"</h1><p/>"+
+										"<h1>Volume: "+_volume+" mL </h1><p/>"+
+										"<h1>Total Calories: "+totalCalories+"</h1>";
 
 			document.getElementById("adviceResult").innerHTML="<p>Your total calories is: "+totalCalories+". You can lessen your calorie-intake by 20% ("+burntCalorie+") by drinking "+water+" glasses of cold water</p>";
 		
@@ -240,26 +240,26 @@
 		//for empty calories table
 		function clearCalories(){
 			db.transaction(deleteCaloriesDB, errorCB);
-			location.reload(true);
 			$.mobile.changePage("#calorieList",{reverse:false,transition:"slide"});
+			window.location.reload();
 			return false;
 		}
 
 
 		function deleteCaloriesDB(tx){
-             		tx.executeSql('DELETE FROM CALORIES', [], getCaloriesQueryDB, errorCB);
+             		tx.executeSql('DROP TABLE CALORIES', [], createDB, errorCB);
               	}
 
 		//for empty beverage table
 		function clearBeverage(){
 			db.transaction(deleteBeverageDB, errorCB);
-			location.reload(true);
 			$.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
+			window.location.reload();
 			return false;
 		}
 
 		function deleteBeverageDB(tx){
-             		tx.executeSql('DELETE FROM BEVERAGE', [], sucessQueryDB, errorCB);
+             		tx.executeSql('DROP TABLE BEVERAGE', [], createDB, errorCB);
               	}
 		
 
