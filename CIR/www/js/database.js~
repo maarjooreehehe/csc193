@@ -10,8 +10,8 @@
 	}
                 
 	function createDB(tx){
-		tx.executeSql('CREATE TABLE IF NOT EXISTS BEVERAGE (beverageName, caloriePerVolume, calorieVolume)');
- 		tx.executeSql('CREATE TABLE IF NOT EXISTS CALORIES (beverageN, volume, totalCalories)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS BEVERAGE (id INTEGER PRIMARY KEY AUTOINCREMENT, beverageName, caloriePerVolume, calorieVolume)');
+ 		tx.executeSql('CREATE TABLE IF NOT EXISTS CALORIES (id INTEGER PRIMARY KEY AUTOINCREMENT, beverageN, volume, totalCalories)');
 	}
 
 	function errorCB(err){
@@ -50,7 +50,7 @@
 		var len = results.rows.length;
 		//alert("Items saved:" +len);
 		for(var i=0;i<len;i++){
-				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverageName+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')" > <p class="line1">' + results.rows.item(i).beverageName + '</p> <p class="line2">'+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL </p></a></li>'
+				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverageName+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')" > <p class="line1">' + results.rows.item(i).beverageName + ' </p> <p class="line2">'+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL </p></a></li>'
              	 }
 
 			      $('#resultList').html(htmlstring);
@@ -164,20 +164,38 @@
             		var len = results.rows.length;
 			var totalC = 0;
             		//alert("Items saved:" +len);
-              		for(var i=0;i<len;i++){
-				var rec = results.rows.item(i);
-				totalC = totalC + rec.totalCalories;
-				htmlstring+='<li>' +
-				'<p class="line1">' + rec.beverageN + '</p>' +
-				'<p class="line2">' + rec.volume + ' mL</p>' +
-				'<span class="bubble">' + rec.totalCalories + '</span></li>';
-             	 }
+
+			if(len==0){
+			$('#totalCalo').html('<h1 style="color: red;">No data recorded</h1>');			
+			}
+			else{
+		      		for(var i=0;i<len;i++){
+					var rec = results.rows.item(i);
+					totalC = totalC + rec.totalCalories;
+					htmlstring+='<li>' +
+					'<p class="line1">' + rec.beverageN + '</p>' +
+					'<p class="line2">' + rec.volume + ' mL</p>' +
+					'<span class="bubble">' + rec.totalCalories + '</span></li>';
+		     	 	}
 	
-				$('#totalCalo').html('<h1>Total Calories-Intake: '+totalC+'</h1>');
-			      $('#calorieResultList').html(htmlstring);
-			      $('#calorieResultList').listview('refresh');
+					$('#totalCalo').html('<a href="#confirmCaloriesClear" data-role="button" data-transition="slidedown" data-rel="dialog">CLEAR</a><h1>Total Calorie-Intake: '+totalC+'</h1>');
+				      $('#calorieResultList').html(htmlstring);
+				      $('#calorieResultList').listview('refresh');
+			}
               
          	 }
+
+		//for empty calories table
+		function clearCalories(){
+			db.transaction(deleteCaloriesDB, errorCB);
+			$.mobile.changePage("#calorieList",{reverse:false,transition:"slide"});
+			return false;
+		}
+
+
+		function deleteCaloriesDB(tx){
+             		tx.executeSql('DELETE FROM CALORIES', [], renderCalorieList, errorCB);
+              	}
 
 
 

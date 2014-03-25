@@ -659,6 +659,23 @@ border-collapse:collapse;
 
 				</div> 
 		<!--End: Advice-->
+
+	<!--Confirm Calories Clear-->
+	<div id="confirmCaloriesClear" data-role="page" >
+	 
+		 <div data-role="header">
+		    <h1>Confirm</h1>
+		  </div>
+	   	 <h1 style="color:white;">Are you sure you want to clear all contents?</h1>   
+	  	<h2><a href="" data-role="button" data-icon="check" onclick="clearCalories()">Yes</a></h2>
+	    	<h2><a href="#calorieList" data-role="button" data-icon="delete">Cancel</a></h2>
+		  
+		<div data-role="footer">
+		<p></p>
+		  </div>
+
+	</div> 
+	<!--End: Confirm Clear-->
 	
 
 <!--MANUAL CONTENT-->
