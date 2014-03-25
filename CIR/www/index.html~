@@ -15,22 +15,18 @@
 	  <script src="scripts/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
 	  <script src="scripts/modernizr-1.6.min.js" type="text/javascript"></script>
 	  
-		<script src="scripts/jquery.jqplot.min.js" type="text/javascript"></script>
-		<script src="scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
-		<script src="scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
+	  <script src="scripts/jquery.jqplot.min.js" type="text/javascript"></script>
+	  <script src="scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
+	  <script src="scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
 	
-		<script src="scripts/app.js" type="text/javascript"></script>
-	
-
-	
-	   <script src="js/database.js" type="text/javascript"></script>
-	   <script type="text/javascript" src="cordova.js"></script>
-
-           <script type="text/javascript" src="js/SocialSharing.js"></script>
+	  <script src="scripts/app.js" type="text/javascript"></script>
 	
 
 	
+	  <script src="js/database.js" type="text/javascript"></script>
+	  <script type="text/javascript" src="cordova.js"></script>
 
+  	  <script type="text/javascript" src="js/SocialSharing.js"></script>
 	 
 
         <title>CIR</title>
@@ -365,11 +361,11 @@ border-collapse:collapse;
 <div data-role="content" id="beverageDetails">
 				<img src="img/logo2.png"  width="400" />
 			</div>
-				<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#newCalorie" data-transition="turn" data-icon="edit">New</a></li>
+							<li><a href="#newCalorie" data-transition="slide" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 							
 							<li><a href="#about" data-transition="slide" data-rel ="dialog" data-icon="info">About</a></li>
@@ -459,7 +455,7 @@ border-collapse:collapse;
 		<p ><a href="#" onclick="viewBeverageRecords();" data-role="button">Beverage List</a></p>
 		<p ><a href="#addBeverage" data-role="button">Add Beverage</a></p>
 
-		<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
@@ -490,7 +486,7 @@ border-collapse:collapse;
                     </ul>
             </div>
 
-	<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
@@ -567,7 +563,7 @@ border-collapse:collapse;
 			</div> 
 			</form>
 
-			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="turn">Home</a></li>
@@ -620,7 +616,7 @@ border-collapse:collapse;
 			</form>
 			
 
-			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
 							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>

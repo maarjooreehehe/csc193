@@ -112,3 +112,8 @@ li .bubble {
 	padding-bottom: 0px;
 }
 
+.footer, .push {
+    height: 4em;
+    background-color: #fb7b4b;
+	
+    }
