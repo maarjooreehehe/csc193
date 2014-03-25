@@ -94,8 +94,7 @@
 
                 $(table + ' > tbody:last')
                     .append('<tr><td>' + key + '</td>' +
-                            '<td>' + value + '</td>' + 
-                            '<td><input type="submit" value="Remove" onclick="removeItem(\'' + type + '\', \'' + key + '\')" /></td></tr>');
+                            '<td>' + value + '</td></tr>');
             }
         }
 
@@ -386,7 +385,7 @@ border-collapse:collapse;
 					<h1>View Records</h1>
 				  </div>
 				<h1 style="color:white;">Display:</h1>   
-				<h2><a href="#localStorageDiv" data-role="button">Records Table</a></h2>
+				<h2><a href="#localStorageDiv" data-role="button" onClick="window.location.reload()">Records Table</a></h2>
 				<h2><a href="#beverageList" data-role="button" onclick="viewBeverageRecords();">Beverage List</a></h2>
 				<h2><a href="#calorieList" data-role="button" onclick="viewCalorieRecords();">Calorie Records</a></h2> 
 				<div data-role="footer">
@@ -404,15 +403,13 @@ border-collapse:collapse;
 		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear</a>
 	
             </header>
-		
-		
-	
-		 <table id="localTable" border="1" data-mode="reflow" class="ui-responsive table-stroke">
+
+		 <table id="localTable" align="center" border="1" data-mode="reflow" class="ui-responsive table-stroke" style="width:80%">
 			    <thead>
 				<tr>
-				    <th>Old Calorie</th>
-				    <th>New Calorie</th>
-				    <th></th>
+				    <th >Old Calorie</th>
+				    <th >New Calorie</th>
+				    
 				</tr>
 			    </thead>
 			    <tbody>
@@ -481,7 +478,8 @@ border-collapse:collapse;
             </header>
 	
             <div data-role="content">
-		      <div id="displayM" align="right"/>
+		        <div id="displayM" align="right">  
+		        </div>
                     
                     <ul data-role="listview" id="resultList" data-inset="true" data-filter="true" data-filter-placeholder="Search Beverage...">
                     </ul>

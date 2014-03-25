@@ -14,14 +14,31 @@ div.float {
 	float: left;
 }
 
-table 
-{
-	width: 100px;
+table {
+    color: black;
+    background: #fff;
+    border: 1px solid #b4b4b4;
+    font: bold 17px helvetica;
+    padding: 0;
+    margin-top:10px;
+    width: 50%;
+    -webkit-border-radius: 8px;
+}
+     
+table tr td {
+    color: #666;
+    border-bottom: 1px solid #b4b4b4;
+    border-right: 1px solid #b4b4b4;
+    padding: 10px 10px 10px 10px;
+    background-image: -webkit-linear-gradient(top, #fdfdfd, #eee);
+}
+         
+table tr td:last-child {
+    border-right: none;
 }
 
-td 
-{
-	width: 100px;
+table tr:last-child td {
+    border-bottom: none;
 }
 
 .ui-input-text    
@@ -112,3 +129,8 @@ li .bubble {
 	padding-bottom: 0px;
 }
 
+.footer, .push {
+    height: 4em;
+    background-color: #fb7b4b;
+	
+    }
