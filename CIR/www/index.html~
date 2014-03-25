@@ -401,10 +401,11 @@ border-collapse:collapse;
 		  <header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Records Table</h1>
+		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear</a>
+	
             </header>
 		
-		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
-	
+		
 	
 		 <table id="localTable" border="1" data-mode="reflow" class="ui-responsive table-stroke">
 			    <thead>
@@ -476,11 +477,11 @@ border-collapse:collapse;
               <header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Beverage List</h1>
+		<a href="#confirmBeverageClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear</a>
             </header>
 	
             <div data-role="content">
-		        <div id="output">    
-		        </div>
+		      <div id="displayM" align="right"/>
                     
                     <ul data-role="listview" id="resultList" data-inset="true" data-filter="true" data-filter-placeholder="Search Beverage...">
                     </ul>
@@ -509,12 +510,11 @@ border-collapse:collapse;
 	  	<header data-role="header">
 			<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
 		        <h1>Calorie Records</h1>
+			<a href="#confirmCaloriesClear" data-icon="delete" data-role="button" data-transition="slidedown" data-rel="dialog">CLEAR</a>
             	</header>
 
-		
-	
             <div data-role="content">
-		      <div id="totalCalo" align="right">
+			 	<div id="totalCalo" align="right">
 		</div>
                     
                     <ul data-role="listview" id="calorieResultList" data-inset="true">
@@ -552,6 +552,7 @@ border-collapse:collapse;
 				<label for="calorieVolume" class="ui-hidden-accessible">Enter Volume</label>
 				<input type="text" id="calorieVolume" class="numberinput" placeholder="Enter volume"  data-mini="true" data-clear-btn="true"/></div>
 
+				Select Unit:
 				<select id="calorieVolumeUnit" data-mini="true">
 				<option value=1>ml</option>
 				<option value=2>L</option>
@@ -591,19 +592,26 @@ border-collapse:collapse;
 				
 				<h1>Beverage Information</h1>
 	  					<div id="beverageDetails">
+						Beverage Name:
 	       					<input type="text" disabled="disabled" id="beverage2" data-mini="true" />
+						Calories:
 						<input type="text" disabled="disabled"  id="caloriePerVolume2" data-mini="true" />
+						mL:
 						<input type="text" disabled="disabled"  id="calorieVolume2" data-mini="true" />
 	  					</div>
 	  			
 
 				<h1>Enter Values Here:</h1>
+				<label for="members2" class="ui-hidden-accessible">Members</label>
 				<input type="text"  id="members2" class="numberinput" placeholder="Group Members" data-mini="true" />
 	
+				<label for="quantity2" class="ui-hidden-accessible">Quantity</label>
 				<input type="text" id="quantity2" class="numberinput" placeholder="Quantity"  data-mini="true" />
 	
+				<label for="volume2" class="ui-hidden-accessible">Volume</label>
 				<input type="text" id="volume2" class="numberinput" placeholder="volume"  data-mini="true" />
 			
+				Select Unit:
 				<select  id="volumeUnitNew" data-mini="true">
 				<option value=1>ml</option>
 				<option value=2>L</option>
@@ -676,6 +684,23 @@ border-collapse:collapse;
 
 	</div> 
 	<!--End: Confirm Clear-->
+
+	<!--Confirm Beverage Clear-->
+	<div id="confirmBeverageClear" data-role="page" >
+	 
+		 <div data-role="header">
+		    <h1>Confirm</h1>
+		  </div>
+	   	 <h1 style="color:white;">Are you sure you want to clear all contents?</h1>   
+	  	<h2><a href="" data-role="button" data-icon="check" onclick="clearBeverage()">Yes</a></h2>
+	    	<h2><a href="#beverageList" data-role="button" data-icon="delete">Cancel</a></h2>
+		  
+		<div data-role="footer">
+		<p></p>
+		  </div>
+
+	</div> 
+	<!--End: Confirm Beverage Clear-->
 	
 
 <!--MANUAL CONTENT-->

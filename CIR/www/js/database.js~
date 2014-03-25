@@ -53,12 +53,19 @@
 		var htmlstring='';
 		var len = results.rows.length;
 		//alert("Items saved:" +len);
+		
+		if(len==0){
+			$('#displayM').html('<h1 style="color: red;">No data recorded</h1>');			
+		}
+
+		else{
 		for(var i=0;i<len;i++){
 				htmlstring+='<li><a href="#" onClick="inputCalorie(\''+results.rows.item(i).beverageName+'\',\''+results.rows.item(i).caloriePerVolume+'\',\''+results.rows.item(i).calorieVolume+'\')" > <p class="line1">' + results.rows.item(i).beverageName + ' </p> <p class="line2">'+results.rows.item(i).caloriePerVolume+' calories per '+results.rows.item(i).calorieVolume+' mL </p></a></li>'
              	 }
 
 			      $('#resultList').html(htmlstring);
 			      $('#resultList').listview('refresh');
+		}
               
 	}
 	
@@ -79,7 +86,9 @@
 			_caloriePerVolume = $("#caloriePerVolume").val();
 
 			if(_beverage=='' || _calorieVolumeUnit=='' || _caloriePerVolume==''){
-			alert("Please fill all fields.");			
+				alert("Please fill-out all fields.");	
+				$.mobile.changePage("#addBeverage",{reverse:false,transition:"slide"});
+		            	return false;		
 			}
 
 			else{
@@ -97,7 +106,23 @@
 			_volumeUnit = $("#volumeUnitNew").val();
 
 			if(_members=='' || _quantity=='' || _volumeUnit==''){
-			alert("Please fill all fields.");			
+				_beverageName = $("#beverage2").val();
+				_caloriePerVolume = $("#caloriePerVolume2").val();
+				_calorieVolume=$("#calorieVolume2").val();
+
+				var _beverage = document.getElementById("beverage2");
+				_beverage.value = _beverageName;
+
+				var _cPV = document.getElementById("caloriePerVolume2");
+				_cPV.value = _caloriePerVolume;
+
+				var _cV = document.getElementById("calorieVolume2");
+				_cV.value = _calorieVolume;
+
+				alert("Please fill-out all fields.");
+				$.mobile.changePage("#inputCalorie",{reverse:false,transition:"slide"});
+				return false;	
+				
 			}
 
 			else{
@@ -215,15 +240,26 @@
 		//for empty calories table
 		function clearCalories(){
 			db.transaction(deleteCaloriesDB, errorCB);
+			location.reload(true);
 			$.mobile.changePage("#calorieList",{reverse:false,transition:"slide"});
 			return false;
 		}
 
 
 		function deleteCaloriesDB(tx){
-             		tx.executeSql('DELETE FROM CALORIES', [], renderCalorieList, errorCB);
+             		tx.executeSql('DELETE FROM CALORIES', [], getCaloriesQueryDB, errorCB);
               	}
 
+		//for empty beverage table
+		function clearBeverage(){
+			db.transaction(deleteBeverageDB, errorCB);
+			$.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
+			return false;
+		}
+
+		function deleteBeverageDB(tx){
+             		tx.executeSql('DELETE FROM BEVERAGE', [], sucessQueryDB, errorCB);
+              	}
 		
 
 

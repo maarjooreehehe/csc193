@@ -401,7 +401,7 @@ border-collapse:collapse;
 		  <header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Records Table</h1>
-		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear Entries</a>
+		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear</a>
 	
             </header>
 		
@@ -477,10 +477,11 @@ border-collapse:collapse;
               <header data-role="header">
 		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
                 <h1>Beverage List</h1>
+		<a href="#confirmBeverageClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear</a>
             </header>
 	
             <div data-role="content">
-		        <div id="output">    
+		        <div id="displayM" align="right">  
 		        </div>
                     
                     <ul data-role="listview" id="resultList" data-inset="true" data-filter="true" data-filter-placeholder="Search Beverage...">
@@ -684,6 +685,23 @@ border-collapse:collapse;
 
 	</div> 
 	<!--End: Confirm Clear-->
+
+	<!--Confirm Beverage Clear-->
+	<div id="confirmBeverageClear" data-role="page" >
+	 
+		 <div data-role="header">
+		    <h1>Confirm</h1>
+		  </div>
+	   	 <h1 style="color:white;">Are you sure you want to clear all contents?</h1>   
+	  	<h2><a href="" data-role="button" data-icon="check" onclick="clearBeverage()">Yes</a></h2>
+	    	<h2><a href="#beverageList" data-role="button" data-icon="delete">Cancel</a></h2>
+		  
+		<div data-role="footer">
+		<p></p>
+		  </div>
+
+	</div> 
+	<!--End: Confirm Beverage Clear-->
 	
 
 <!--MANUAL CONTENT-->
