@@ -178,7 +178,7 @@
 					'<span class="bubble">' + rec.totalCalories + '</span></li>';
 		     	 	}
 	
-					$('#totalCalo').html('<a href="#confirmCaloriesClear" data-role="button" data-transition="slidedown" data-rel="dialog">CLEAR</a><h1>Total Calorie-Intake: '+totalC+'</h1>');
+					$('#totalCalo').html('<h1>Total Calorie-Intake: '+totalC+'</h1>');
 				      $('#calorieResultList').html(htmlstring);
 				      $('#calorieResultList').listview('refresh');
 			}

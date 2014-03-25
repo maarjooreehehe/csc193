@@ -23,6 +23,8 @@
 	}
          
 	function addBeverageDB(tx){
+
+		
 		var _beverage = $("#beverageName").val();
 		var _calorieVolumeUnit = $("#calorieVolumeUnit").val();
 		var _caloriePerVolume = $("#caloriePerVolume").val();
@@ -40,10 +42,12 @@
 		      	var sql ='INSERT INTO BEVERAGE(beverageName, caloriePerVolume, calorieVolume) VALUES (?,?,?)';
 		      	tx.executeSql(sql,[_beverage, _caloriePerVolume, _calorieVolume],sucessQueryDB,errorCB);
          }
+
           
 	function sucessQueryDB(tx){
 		tx.executeSql('SELECT * FROM BEVERAGE', [], renderList, errorCB);
 	}
+
 
 	function renderList(tx,results){
 		var htmlstring='';
@@ -69,15 +73,38 @@
           
        
 		function addBeverage(){
-                    db.transaction(addBeverageDB, errorCB);
-                    $.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
-                    return false;
+		
+			_beverage = $("#beverageName").val();
+			_calorieVolumeUnit = $("#calorieVolumeUnit").val();
+			_caloriePerVolume = $("#caloriePerVolume").val();
+
+			if(_beverage=='' || _calorieVolumeUnit=='' || _caloriePerVolume==''){
+			alert("Please fill all fields.");			
+			}
+
+			else{
+		            db.transaction(addBeverageDB, errorCB);
+		            $.mobile.changePage("#beverageList",{reverse:false,transition:"slide"});
+		            return false;
+			}
                 }
 
 		function calculateCalories2(){
-                    db.transaction(calculateCal, errorCB);
-                  $.mobile.changePage("#totalCal",{reverse:false,transition:"slide"});
+
+			_members = $("#members2").val();
+			
+			_quantity = $("#quantity2").val();
+			_volumeUnit = $("#volumeUnitNew").val();
+
+			if(_members=='' || _quantity=='' || _volumeUnit==''){
+			alert("Please fill all fields.");			
+			}
+
+			else{
+                    	db.transaction(calculateCal, errorCB);
+                  	$.mobile.changePage("#totalCal",{reverse:false,transition:"slide"});
 			return false;
+			}
                 }
 
 		function inputCalorie(beverageName, cPV, cV){
@@ -196,6 +223,8 @@
 		function deleteCaloriesDB(tx){
              		tx.executeSql('DELETE FROM CALORIES', [], renderCalorieList, errorCB);
               	}
+
+		
 
 
 
