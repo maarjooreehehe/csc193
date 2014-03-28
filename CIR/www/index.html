@@ -26,7 +26,13 @@
 	  <script src="js/database.js" type="text/javascript"></script>
 	  <script type="text/javascript" src="cordova.js"></script>
 
-  	  <script type="text/javascript" src="js/SocialSharing.js"></script>
+
+            <!-- cordova -->
+		<script src="cordova.js"></script>
+	    <!-- cordova facebook plugin -->
+		<script src="cdv-plugin-fb-connect.js"></script>
+	    <!-- facebook js sdk -->
+		<script src="facebook-js-sdk.js"></script>
 	 
 
         <title>CIR</title>
@@ -218,6 +224,132 @@
          }
      </script>
 
+
+
+
+
+<script>
+if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable is missing. Check  cordova.js included correctly');
+if (typeof CDV == 'undefined') alert('CDV variable is missing. Check cdv-plugin-fb-connect.js is included correctly');
+if (typeof FB == 'undefined') alert('FB variable is missing. Check the Facebook JS SDK file included.');
+
+
+
+FB.Event.subscribe('auth.login', function(response) {
+        alert('login event fired !!');
+});
+            
+ FB.Event.subscribe('auth.logout', function(response) {
+         alert('logout event fired !!');
+     });
+           
+            
+ FB.Event.subscribe('auth.statusChange', function(response) {
+         alert('statusChange event fired !!');
+ });
+
+
+
+document.addEventListener('deviceready', function() {
+          try {
+          //alert('Device is ready! Write your app id below .For demo i put my app id there.');
+             FB.init({ appId: "1404989669770555", nativeInterface: CDV.FB, useCachedDialogs: false });
+                document.getElementById('data').innerHTML = "";
+        } catch (e) {
+        //alert(e);
+         }
+}, false);
+
+
+
+function login() {
+                FB.login(
+                         function(response) {
+                         if (response.session) {
+                         alert('you are logged in');
+                         } else {
+                         alert('you are not logged in');
+                         }
+                         },
+                         { scope: "email" }
+                         );
+            }
+
+
+
+function logout() {
+                FB.logout(function(response) {
+                          alert('logged out');
+ });
+ }
+
+
+
+
+function getLoginStatus() {
+                FB.getLoginStatus(function(response) {
+                                  if (response.status == 'connected') {
+                                  alert('You are connected to Fb');
+                                  } else {
+                                  alert('not connected to FB');
+                                  }
+                                  });
+            }
+
+
+function getTotalCal(){
+	var totalC = 0;
+	var storage = window['local' + 'Storage'];
+	
+		var key = storage.key(0);
+		totalC = totalC + key;
+
+	return parseInt(totalC,10);
+}
+
+
+function postMsg()
+	{
+
+			FB.ui( { 
+				method:"feed", 
+				name: 'I can now know my calorie consumption. You should try this app!', 
+				caption: 'Calculate Your Calorie Consumption Now!', 
+				description: ( 'Calorie Intake Reminder App is a simple mobile application ' + 
+					'for Android which helps you remind of your calorie consumption' +
+					' and advices you on how to lessen it' ), link:"https://www.facebook.com/calorieintakereminderapp", 
+				display: "dialog" 
+			}, function(response) { 
+				if (response && response.post_id) { console.log('Post was published.'); } 
+				else { console.log('Post was not published.'); } 
+			} );
+
+	}
+
+function postMsg2(unBurnCalories,water)
+	{
+
+			FB.ui( { 
+				method:"feed", 
+				name: 'I got a calorie of '+unBurnCalories+'. I can lessen it by drinking '+water+' glass/glasses of cold water.', 
+				caption: 'Calculate Your Calorie Consumption Now!', 
+				description: ( 'Calorie Intake Reminder App is a simple mobile application ' + 
+					'for Android which helps you remind of your calorie consumption' +
+					' and advices you on how to lessen it' ), link:"https://www.facebook.com/calorieintakereminderapp", 
+				display: "dialog" 
+			}, function(response) { 
+				if (response && response.post_id) { console.log('Post was published.'); } 
+				else { console.log('Post was not published.'); } 
+			} );
+
+	}
+
+</script>
+
+
+
+
+
 <!--POP UP BOX HERE--->
 
 	
@@ -368,7 +500,8 @@ border-collapse:collapse;
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 							
 							<li><a href="#about" data-transition="slide" data-rel ="dialog" data-icon="info">About</a></li>
-							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 
 						</ul>
             
@@ -460,7 +593,8 @@ border-collapse:collapse;
 							<li><a href="#newCalorie" class="ui-state-persist ui-btn-active" data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
-							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 
 						</ul>
             
@@ -492,7 +626,8 @@ border-collapse:collapse;
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 							<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
-							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 
 						</ul>
             
@@ -569,7 +704,8 @@ border-collapse:collapse;
 							<li><a href="#newCalorie"  data-transition="turn" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 								<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
-							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 
 						</ul>
             
@@ -629,7 +765,8 @@ border-collapse:collapse;
 							<li><a href="#newCalorie"  data-transition="pop" data-icon="edit">New</a></li>
 							<li><a href="#viewRecords" data-transition="slidedown" data-rel ="dialog" data-icon="grid">Records</a></li>
 						<li><a href="#about" data-transition="pop" data-rel ="dialog" data-icon="info">About</a></li>
-							<li><a href="share.html" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 
 						</ul>
             
