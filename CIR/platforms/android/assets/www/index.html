@@ -2,8 +2,9 @@
 
 <html>
     <head>
-  
-	  <link href="content/main.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+          <link href="content/main.css" rel="stylesheet" />
 	  <link href="content/jquery.mobile-1.1.0.min.css" rel="stylesheet" type="text/css" />
 	  <link href="content/jquery.jqplot.css" rel="stylesheet" type="text/css" /> 
   
@@ -15,325 +16,25 @@
 	  <script src="scripts/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
 	  <script src="scripts/modernizr-1.6.min.js" type="text/javascript"></script>
 	  
-
-
-
-	  <style type="text/css">
-		.myChart {
-			width: 300px;
-			height: 200px;
-		}
-		
-		
-		#toast{
-		position: fixed;
-		bottom: 200px;
-		left: 50%;
-		width: 200px;
-		margin-left: -100px;
-		border: 1px solid #666;
-		background-color: black;
-		padding: 10px 0 ;
-		text-align:center;
-		font-size: 200%;
-		font-family:"Arial";
-		color: white;
-		opacity: .4;
-		
-
-		-webkit-transition: opacity 0.5s ease-out; /* Saf3.2+, Chrome */
-		-moz-transition: opacity 0.5s ease-out; /* FF4+ */
-		-ms-transition: opacity 0.5s ease-out; /* IE10? */
-		-o-transition: opacity 0.5s ease-out; /* Opera 10.5+ */
-		transition: opacity 0.5s ease-out;
-		}
+	  <script src="scripts/jquery.jqplot.min.js" type="text/javascript"></script>
+	  <script src="scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
 	
-		/* for the background image */
+	  <script src="js/database.js" type="text/javascript"></script>
 
-		#bg { position: fixed; top: 0; left: 0; }
-		.bgwidth { width: 100%; }
-		.bgheight { height: 100%; }
-		#bg {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;
-}
-		android:src="@drawable/bg.jpg"
-		android:scaleType = "centerCrop"
-		    
-		
-		/* for the footer */
-		
-		#footer{width: 100%;
-		background-color: #fb7b4b;
-		opacity: 0.8; // or use rgba() where a opacity.
-		}
-
-		.footer:hover{
-		background-color: #ed551c;
-		opacity: 1.8;
-		}
-		
-		.footer:active{
-		color: #0f0;
-		}
-
-	</style>
-
-        <title>CIR</title>
+	 
+            <!-- cordova -->
+		<script src="cordova.js"></script>
+	    <!-- cordova facebook plugin -->
+		<script src="cdv-plugin-fb-connect.js"></script>
+	    <!-- facebook js sdk -->
+		<script src="facebook-js-sdk.js"></script>
+	
+	  
+ <title>CIR</title>
 
 	<script type="text/javascript">
-	
-	// for the bg image
-	
-	$(window).load(function() {    
-
-	var theWindow        = $(window),
-	    $bg              = $("#bg"),
-	    aspectRatio      = $bg.width() / $bg.height();
-	    			    		
-	function resizeBg() {
-		
-		if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
-		    $bg
-		    	.removeClass()
-		    	.addClass('bgheight');
-		} else {
-		    $bg
-		    	.removeClass()
-		    	.addClass('bgwidth');
-		}
-					
-	}
-	                   			
-	theWindow.resize(resizeBg).trigger("resize");
-
-	});
-
-        $(document).ready(function () {
-           
-		   if (Modernizr.localstorage) {
-                $("#detectionSpan").html("Your browser supports local storage");
-            } 
-
-            showKeys();
-        });
-
-        // show the keys currently held in the local and session storage
-        function showKeys() {
-            if (Modernizr.localstorage) {
-                showStorageKeys("local", "#localTable");
-            }
-        }
-
-        // show the keys currently held in the specified type of storage in the specified table
-        function showStorageKeys(type, table) {
-            // get the specified type of storage, i.e. local or session
-            var storage = window[type + 'Storage'];
-
-            // remove the rows in the specified table before we start
-            $(table + " > tbody > tr").remove();
-
-            // loop through the existing keys in the storage and add them to the TBODY element as rows
-            for (var i = 0; i < storage.length; i++) {
-                var key = storage.key(i);
-                var value = storage.getItem(key);
-
-                $(table + " > tbody:last")
-                    .append("<tr><td>" + key + "</td>" +
-                            "<td>" + value + "</td>" + 
-                            "<td><input type='submit' value='Remove' onclick='removeItem(\"" + type + "\", \"" + key + "\")'/></td></tr>");
-            }
-        }
-
-	 // adds a new key to local storage
-	  	function setKey() {
-			members = $("#members").val();
-			quantity = $("#quantity").val();
-			volumeUnit = $("#volumeUnit").val();
-			calorieVolumeUnit = $("#calorieVolumeUnit").val();
-			caloriePerVolume = $("#caloriePerVolume").val();
-			percentage = $("#percentage").val();
-			
-			if(volumeUnit==2){
-				var volume=( $("#volume").val() * 1000);
-			}
-			else if(volumeUnit==3){
-				volume=($("#volume").val()  * 30);
-			}
-			else{
-				volume= $("#volume").val();
-				
-			}
-			
-			if(calorieVolumeUnit==2){
-				calorieMl = ($("#calorieMl").val() * 1000);
-			}
-			else if(calorieVolumeUnit==3){
-				calorieMl=($("#calorieMl").val() * 30);
-			}
-			else{
-				calorieMl=$("#calorieMl").val();
-			}
-			
-			totalCalorie = parseInt( ((caloriePerVolume/calorieMl) * ((quantity*volume)/members)),10 );
-			burntCalorie = parseInt( (totalCalorie - ((totalCalorie*percentage)/100)) ,10);
-			water = Math.round(((((totalCalorie-burntCalorie)*1000)/33.5)/240));
-			
-			waterPerWeek = water * 7;
-			
-			var key = totalCalorie;
-			var value = burntCalorie;
-			var myDate=new Date();
-			
-			document.getElementById("result").innerHTML="You have a calorie of: "+ totalCalorie + ",  to lessen your calorie into " + burntCalorie + ",   you must drink " + water + "   glasses of cold water; " + waterPerWeek + " glasses of cold water per week<p></p>" + myDate;
-		
-		    if (Modernizr.localstorage) {
-		    localStorage.setItem(key, value);
-			drawToast("Item saved");
-		    }
-		    showKeys();
-		}
-
-	function hideToast(){
-		var alert = document.getElementById("toast");
-		alert.style.opacity = 0;
-		clearInterval(intervalCounter);
-	}
-	
-	function drawToast(message){
-		
-		var alert = document.getElementById("toast");
-		
-		if (alert == null){
-			var toastHTML = '<div id="toast">' + message + '</div>';
-			document.body.insertAdjacentHTML('beforeEnd', toastHTML);
-		}
-		else{
-			alert.style.opacity = .9;
-		}
-		
-		
-		intervalCounter = setInterval("hideToast()", 1000);
-	}
-
- 	function clearLocalKeys() {
-            clearKeys("local");
-        }
-
-    
-
-        // clear all the held keys in the specified type of storage
-        function clearKeys(type) {
-            // get the specified type of storage
-            var storage = window[type + 'Storage'];
-
-            // clear the keys
-            storage.clear();
-
-            showKeys();
-        }
-
-        // removes an item with the specified key from the storage
-        function removeItem(type, key) {
-            // get the specified local storage
-            var storage = window[type + 'Storage'];
-            storage.removeItem(key);
-            showKeys();
-        }
-    
-     
-    </script>
-
-<!--POP UP BOX HERE--->
-
-	
-	<style type="text/css">
-/* popup_box DIV-Styles*/
-#popup_box { 
-	display:none; /* Hide the DIV */
-	position:fixed;  
-	_position:absolute; /* hack for internet explorer 6 */  
-	width: 0 auto;
-	height: 0 auto;
-	background:#FFFFFF;  
-	center: 0 auto;
-	top: 150px;
-	z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
-	margin-left: 15px;  
-	
-	/* additional features, can be omitted */
-	border:2px solid #ff0000;  	
-	padding:15px;  
-	font-size:10px;  
-	-moz-box-shadow: 0 0 5px #ff0000;
-	-webkit-box-shadow: 0 0 5px #ff0000;
-	box-shadow: 0 0 5px #ff0000;
-	
-}
-
-#container {
-	background: #d2d2d2; /*Sample*/
-	width:100%;
-	height:100%;
-}
-
-a{  
-cursor: pointer;  
-text-decoration:none;  
-} 
-
-/* This is for the positioning of the Close Link */
-#popupBoxClose {
-	font-size:20px;  
-	line-height:15px;  
-	left:5px;  
-	top:5px;  
-	position:absolute;  
-	color:#6fa5e2;  
-	font-weight:50;  	
-}
-</style>
-
-<script type="text/javascript">
-	
-	$(document).ready( function() {
-	
-		// When site loaded, load the Popupbox First
-		
-		$('#popupBoxOpen').click( function() {			
-			loadPopupBox();
-		});
-		
-		$('#popupBoxClose').click( function() {			
-			unloadPopupBox();
-		});
-		
-		$('#container').click( function() {
-			unloadPopupBox();
-		});
-
-		function unloadPopupBox() {	// TO Unload the Popupbox
-			$('#popup_box').fadeOut("slow");
-			$("#container").css({ // this is just for style		
-				"opacity": "1"  
-			}); 
-		}	
-		
-		function loadPopupBox() {	// To Load the Popupbox
-			$('#popup_box').fadeIn("slow");
-			$("#container").css({ // this is just for style
-				"opacity": "0.3"  
-			}); 		
-		}
-		
-		
-	});
-</script>
+            app.initialize();
+        </script>
 
 <!-- For Forcing The app to enter only numeric numbers-->
 
@@ -372,217 +73,581 @@ text-decoration:none;
              });
          }
      </script>
-	 
 
- </head>
+<script>
+if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable is missing. Check  cordova.js included correctly');
+if (typeof CDV == 'undefined') alert('CDV variable is missing. Check cdv-plugin-fb-connect.js is included correctly');
+if (typeof FB == 'undefined') alert('FB variable is missing. Check the Facebook JS SDK file included.');
+
+
+
+FB.Event.subscribe('auth.login', function(response) {
+        alert('login event fired !!');
+});
+            
+ FB.Event.subscribe('auth.logout', function(response) {
+         alert('logout event fired !!');
+     });
+           
+            
+ FB.Event.subscribe('auth.statusChange', function(response) {
+         alert('statusChange event fired !!');
+ });
+
+
+
+document.addEventListener('deviceready', function() {
+          try {
+          //alert('Device is ready! Write your app id below .For demo i put my app id there.');
+             FB.init({ appId: "1404989669770555", nativeInterface: CDV.FB, useCachedDialogs: false });
+                document.getElementById('data').innerHTML = "";
+        } catch (e) {
+        //alert(e);
+         }
+}, false);
+
+
+
+function login() {
+                FB.login(
+                         function(response) {
+                         if (response.session) {
+                         alert('you are logged in');
+                         } else {
+                         alert('you are not logged in');
+                         }
+                         },
+                         { scope: "email" }
+                         );
+            }
+
+
+
+function logout() {
+                FB.logout(function(response) {
+                          alert('logged out');
+ });
+ }
+
+
+
+
+function getLoginStatus() {
+                FB.getLoginStatus(function(response) {
+                                  if (response.status == 'connected') {
+                                  alert('You are connected to Fb');
+                                  } else {
+                                  alert('not connected to FB');
+                                  }
+                                  });
+            }
+
+
+function getTotalCal(){
+	var totalC = 0;
+	var storage = window['local' + 'Storage'];
+	
+		var key = storage.key(0);
+		totalC = totalC + key;
+
+	return parseInt(totalC,10);
+}
+
+
+function postMsg()
+	{
+
+			FB.ui( { 
+				method:"feed", 
+				name: 'I can now know my calorie consumption. You should try this app!', 
+				caption: 'Calculate Your Calorie Consumption Now!', 
+				description: ( 'Calorie Intake Reminder App is a simple mobile application ' + 
+					'for Android which helps you remind of your calorie consumption' +
+					' and advices you on how to lessen it' ), link:"https://www.facebook.com/calorieintakereminderapp", 
+				display: "dialog" 
+			}, function(response) { 
+				if (response && response.post_id) { console.log('Post was published.'); } 
+				else { console.log('Post was not published.'); } 
+			} );
+
+	}
+
+function postMsg2(unBurnCalories,water)
+	{
+
+			FB.ui( { 
+				method:"feed", 
+				name: 'I got a calorie of '+unBurnCalories+'. I can lessen it by drinking '+water+' glass/glasses of cold water.', 
+				caption: 'Calculate Your Calorie Consumption Now!', 
+				description: ( 'Calorie Intake Reminder App is a simple mobile application ' + 
+					'for Android which helps you remind of your calorie consumption' +
+					' and advices you on how to lessen it' ), link:"https://www.facebook.com/calorieintakereminderapp", 
+				display: "dialog" 
+			}, function(response) { 
+				if (response && response.post_id) { console.log('Post was published.'); } 
+				else { console.log('Post was not published.'); } 
+			} );
+
+	}
+
+</script>
+
+	
+	<style type="text/css">
+		.ui-page{
+	    background:url("img/bg.jpg") no-repeat;
+	    background-size:cover;
+	 
+	}
+
+	a{  
+	cursor: pointer;  
+	text-decoration:none;  
+	} 
+
+		/* for the footer */
+		
+		#footer{width: 100%;
+		background-color: #fb7b4b;
+		
+		}
+
+		.footer:hover{
+		background-color: #ed551c;
+		opacity: 1.8;
+		}
+		
+		.footer:active{
+		color: #0f0;
+		}
+
+	table,th,td
+	{
+	border:1px solid black;
+	border-collapse:collapse;
+	}
+
+	.myChart {
+			width: 300px;
+			height: 200px;
+		}
+	</style>
+
+   </head>
 
     <body>
 
-		
-		<div id="page1" data-role="page">
+ 	<!--Beverage List-->
+        <div data-role="page" id="beverageList" data-add-back-btn="true">
+          <header data-role="header">
+                <h1>CIR</h1>
+		<a href="#addBeverage" data-role="button" data-icon="edit" data-theme="b" data-transition="slide">New</a>
+          </header>
 
-				<header data-role="header" data-position="fixed">
-		
-					<h1>CALORIE INTAKE REMINDER</h1>
-		
-				</header>
-				<section data-role="content">
-					 <ul data-role="listview" data-inset="true" data-shadow="true">
-						<li data-role="list-divider" style="text-align: center;">Select Task</li>
-						<li><a href="#calorieIntake" data-transition="pop">Calorie Intake</a></li>
-						<li><a href="#viewRecords" data-transition="slidedown" data-rel="dialog">View Records</a></li>
-						<li><a href="#localStorageDiv" data-transition="pop">Data Table</a></li>
-						<li><a href="#pageDataGraph" data-transition="pop">Data Graph</a></li>
-						<li><a href="#manual" data-transition="pop">Manual</a></li>
+            <div data-role="content">
+			<h1>Select a beverage:</h1>
+		        <div id="displayM" align="right">  
+		        </div>
+                    
+                    <ul data-role="listview" id="resultList" data-inset="true" data-filter="true" data-filter-placeholder="Search Beverage...">
+                    </ul>
+            </div>
 
-						<li><a href="share.html" rel="external">Sharing</a></li>
-				
-				<img src="img/bg.jpg" id="bg" alt="" />
-				
-				<section data-role="content">
-				</section>
-
-
-				
-				<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
 					<div data-id="mainTab" data-role="navbar">
 						<ul id="footer_tabs">
-							<li><a href="index.html" class="ui-state-persist ui-btn-active" rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#pageBarChart" data-transition="pop" data-icon="edit">Data Input</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
-							<li><a href="#about" data-transition="pop" data-icon="info">About</a></li>
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+						
+							<li><a href="#adviceDiv" onClick="loadPieChartValues();" data-transition="slide" data-icon="grid">My Calories</a></li>
+							<li><a href="#about" data-transition="slide" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
 						</ul>
             
 					</div>
 				</div>
-			
-		</div>
-			
-			
-		<!--View Records Pop-up-->
-		<div id="viewRecords" data-role="page">
-				 <div data-role="header">
-					<h1>View Records</h1>
-				  </div>
-				<h1 style="color:white;">Display:</h1>   
-				<h2><a href="#localStorageDiv" data-role="button">Table</a></h2>
-				<h2><a href="#localStorageDiv" data-role="button">Graph</a></h2>
-				  
-				<div data-role="footer">
-					<p></p>
-				</div>
-
-		</div>
-			
-	
-		<div id="calorieIntake" data-role="page" data-rockncoder-jspage="manageBarChart">
-		
-				<header data-role="header" data-position="fixed">
-				<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
-					<h1>DATA INPUT</h1>
-				<a href="#localStorageDiv" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
-				</header>
-
-
-	
-		<a id="popupBoxOpen">Calorie Intake Reminder</a>		
-	
-				<section data-role="content">
-				<div id="popup_box">	<!-- OUR PopupBox DIV-->
-					<h1 id="result"></h1>
-					<a id="popupBoxClose">Close</a>	
-				</div>
-		</div>
-
-
-
-
-
-		<div id="pageBarChart" data-role="page" data-rockncoder-jspage="manageBarChart">
-
-
-
-
-
-			<header data-role="header" data-position="fixed">
-				<a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a>
-				<h1>DATA TABLE</h1>
-				<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
-			</header>
-<!--			
-			<div id="barChart" class="myChart"; height: 5px; width:5px></div>
-			<button id="refreshBarChart" value="Refresh Chart" data-mini="true"></button>
--->			 
-			<label for="members">Members:</label>
-			<input type="text" id="members" class="numberinput" placeholder="Group Members" data-mini="true"/>
-			
-			<label for="members">Quantity:</label>
-			<input type="text" id="quantity" class="numberinput" placeholder="Quantity"  data-mini="true"/>
-
-			<label for="members">Volume:</label>
-			<input type="text" id="volume" class="numberinput" placeholder="volume"  data-mini="true"/>
-			
-			<select id="volumeUnit" data-mini="true"/>
-			<option value=1>ml</option>
-			<option value=2>L</option>
-			<option value=3>oz</option>
-			</select>
-			
-			<label for="members">Calorie per volume:</label>
-			<input type="text" id="caloriePerVolume" class="numberinput" placeholder="calorie per volume"  data-mini="true"/>
-			<input type="text" id="calorieMl" class="numberinput" placeholder=""  data-mini="true"/>
-			<select id="calorieVolumeUnit" data-mini="true"/>
-			<option value=1>ml</option>
-			<option value=2>L</option>
-			<option value=3>oz</option>
-			</select>
-			
-			
-			<label for="members">Percentage:</label>
-			<select id="percentage" data-mini="true"/>
-			<option value=5>5%</option>
-			<option value=10>10%</option>
-			<option value=15>15%</option>
-			<option value=20>20%</option>
-			</select>
-			<input type="submit" data-theme="b" value="SAVE" onclick="setKey()" />
-		
-			<div data-role="footer" data-position="fixed" id="footer" data-theme="footer">      
-					<div data-id="mainTab" data-role="navbar">
-						<ul id="footer_tabs">
-							<li><a href="index.html" rel="external" data-icon="home" data-transition="pop">Home</a></li>
-							<li><a href="#pageBarChart" class="ui-state-persist ui-btn-active"  data-transition="pop" data-icon="edit">Data Input</a></li>
-							<li><a href="#viewRecords" data-transition="pop" data-icon="grid">Records</a></li>
-							<li><a href="#" data-transition="pop" data-icon="arrow-r">Settings</a></li>
-							<li><a href="#about" data-transition="pop" data-icon="info">About</a></li>
-						</ul>
-            
-					</div>
-				</div>
-		</div>
-			
-	</div>
-	
-	
-	
-	<div id="localStorageDiv" data-role="page" data-rockncoder-jspage="managePieChart">
-		<header data-role="header" data-position="fixed">
-		<a href="index.html" rel="external" data-icon="home" data-transition="pop">HOME</a>
-			<h1>DATA TABLE</h1>
-		<a href="#pageDataGraph" data-icon="next" data-theme="b" data-transition="pop">NEXT</a>
-		</header>
-		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-rel="dialog">Clear Entries</a>
-	
-		 <table id="localTable" border="1">
-            <thead>
-                <tr>
-                    <th>Old Calorie</th>
-                    <th>New Calorie</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-			
-        </table>
-	<input type="button" value="Update Chart" onClick="window.location.reload()">
 
         </div>
+	<!--End-Beverage List-->
+
+
+	<!--Advice Chart-->
+	<div id="adviceDiv" data-role="page" data-rockncoder-jspage="managePieChart">
+		<header data-role="header">
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
+                <h1>CIR</h1>
+		<a href="#confirmClear" data-role="button" data-transition="slidedown" data-icon="delete" data-rel="dialog">Clear</a>
+		</header>
+	<center>
+
+		
+		<section data-role="content">
+			<div id="pieChart" class="myChart"></div>
+			<button id="adviceLink" onClick="adviceMe(); loadPieChartValues();"  data-theme="b" value="Advice Me" data-mini="true"></button>
+			<h1 style="color:#00CED1">Unburn Calorie:</h1>
+			<input type="text" disabled="disabled" id="unBurnCalorie"  data-mini="true"/>
+			<h1 style="color:#DAA520">Burnt Calorie:</h1>
+			<input type="text" disabled="disabled" id="burntCalorie"  data-mini="true"/>
+
+			
+		</section>
+
+		<pre>
+			<div id="adviceResult"></div>
+		</pre>
+
+</center>		
 	
-	<div id="confirmClear" data-role="page" >
-	 
+	
+        </div>
+	<!--End: Advice CHart -->
+	
+	<!--Confirm Clear-->
+	<div id="confirmClear" data-role="page" > 
 		 <div data-role="header">
 		    <h1>Confirm</h1>
 		  </div>
-	   	 <h1 style="color:white;">Are you sure you want to clear all contents?</h1>   
-	  	<h2><a href="#localStorageDiv" data-role="button" data-icon="check" onclick="clearLocalKeys()">Yes</a></h2>
-	    	<h2><a href="#localStorageDiv" data-role="button" data-icon="delete">Cancel</a></h2>
+	   	 <h1 style="color:white;">WARNING: Stored calorie records will be deleted. Continue?</h1>   
+	  	<h2><a href="index.html" rel="external" data-role="button" data-icon="check" onclick="clearCalorieRecords(); loadPieChartValues(); loadPieChartValues();">Yes</a></h2>
+	    	<h2><a href="#adviceDiv" data-role="button" data-icon="delete">Cancel</a></h2>
 		  
 		<div data-role="footer">
 		<p></p>
 		  </div>
 
-
 	</div> 
+	<!--End: Confirm Clear-->
 		
-	<div id ="manual" data-role="page">
-		<div data-role="header">
-		<h1>Manual</h1>
+
+
+	<!--Add Beverage-->
+	<div id="addBeverage" data-role="page" >
+
+		<header data-role="header">
+		<a href="#" data-icon="back" data-rel="back">BACK</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
+                <h1>CIR</h1>
+            	</header>
+		
+
+			  <form method="POST" onsubmit="return addBeverage()" id="addBeverageForm" data-ajax="false">
+			<div id="beverageDetails">
+				<h1>Name</h1>				
+				<div class="ui-field-contain">
+				 <label for="beverageName" class="ui-hidden-accessible">Name</label>
+				<input type="text" id="beverageName" class="" placeholder="Beverage Name" data-mini="true" style="margin: 0 auto;" />
+				</div>
+				
+				<h1>Calorie Per Volume:</h1>
+				<div class="ui-field-contain">
+				<label for="caloriePerVolume" class="ui-hidden-accessible">Enter Calorie</label>
+				<input type="text" id="caloriePerVolume" class="numberinput" placeholder="Enter calorie"  data-mini="true" data-clear-btn="true" /></div>
+
+				<div class="ui-field-contain">
+				<label for="calorieVolume" class="ui-hidden-accessible">Enter Volume</label>
+				<input type="text" id="calorieVolume" class="numberinput" placeholder="Enter volume"  data-mini="true" data-clear-btn="true"/></div>
+
+				Select Unit:
+				<select id="calorieVolumeUnit" data-mini="true">
+				<option value=1>ml</option>
+				<option value=2>L</option>
+				<option value=3>oz</option>
+				</select>
+				
+			
+ 			<input type="submit" value="Submit" data-theme="b"/>  
+			</div> 
+			</form>
+
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+						
+							<li><a href="#adviceDiv" onClick="loadPieChartValues();" data-transition="slide" data-icon="grid">My Calories</a></li>
+							<li><a href="#about" data-transition="slide" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
+						</ul>
+            
+					</div>
+				</div>
+	</div>
+	<!--End-Add Beverage-->
+
+	<!--Calculate Calorie-->
+	<div data-role="page" id="inputCalorie" >
+            <header data-role="header">
+		<a href="#" data-icon="back" data-rel="back">BACK</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
+              	<h1>CIR</h1>
+            </header>
+       
+		  <form method="POST" onsubmit="return calculateCalories2()" id="calculateCaloriesForm" data-ajax="false">
+				
+				
+				<h1>Beverage Information</h1>
+	  					<div id="beverageDetails" style="background-color:black; opacity:0.6;">
+						Beverage Name:
+	       					<input type="text" disabled="disabled" id="beverage2" data-mini="true" />
+						Calories:
+						<input type="text" disabled="disabled"  id="caloriePerVolume2" data-mini="true" />
+						mL:
+						<input type="text" disabled="disabled"  id="calorieVolume2" data-mini="true" />
+						<br>
+	  					</div>
+	  			
+
+				<h1 style="color:black;">Enter Values Here:</h1>
+				<label for="members2" class="ui-hidden-accessible">Members</label>
+				<input type="text"  id="members2" class="numberinput" placeholder="Group Members" data-mini="true" />
+	
+				<label for="volume2" class="ui-hidden-accessible">Volume</label>
+				<input type="text" id="volume2" class="numberinput" placeholder="volume"  data-mini="true" />
+
+				Select Unit:
+				<select  id="volumeUnitNew" data-mini="true">
+				<option value=1>ml</option>
+				<option value=2>L</option>
+				<option value=3>oz</option>
+				</select>
+
+				<label for="quantity2" class="ui-hidden-accessible">Quantity</label>
+				<input type="text" id="quantity2" class="numberinput" placeholder="Quantity"  data-mini="true" />
+
+ 				<input type="submit" value="Calculate" data-theme="b"/>
+                             
+			
+			</form>
+			
+
+		<div data-role="footer" data-position="fixed" id="footer" class="footer" data-theme="footer">      
+					<div data-id="mainTab" data-role="navbar">
+						<ul id="footer_tabs">
+							<li><a href="index.html"  rel="external" data-icon="home" data-transition="pop">Home</a></li>
+						
+							<li><a href="#adviceDiv" onClick="loadPieChartValues();" data-transition="slide" data-icon="grid">My Calories</a></li>
+							<li><a href="#about" data-transition="slide" data-rel ="dialog" data-icon="info">About</a></li>
+							<li><a onclick="postMsg()" data-icon="star" data-transition="slide" rel="external">Share</a></li>
+
+						</ul>
+            
+					</div>
+			</div>
+	</div>
+	<!--End Calculate Calorie-->
+
+	<!--Total Calories-->
+	<div data-role="page" id="totalCal" data-add-back-btn="true">
+  		<header data-role="header">
+		<a href="#" data-icon="back" data-rel="back">BACK</a>
+		<a href="index.html" rel="external" data-icon="home" data-transition="slide" class="">HOME</a>
+                <h1>Total Calories</h1>
+            	</header>
+
+		<div id="beverageDetails">
+			<pre><div id="totalCaloriesResult" align="left"></div></pre>	
+			
+
+			<a href="#adviceDiv" data-theme="b" data-role="button" data-transition="slidedown" ><h1 style="font-size: 12px; font-weight: normal;" onClick="loadPieChartValues();loadPieChartValues();">Know Your Calorie Status</h1>
+				</a>
+			
+		</div>	
+		
+		
+	</div>
+		
+	<!--End Total Calories-->
+
+	
+
+	
+
+<!--MANUAL CONTENT-->
+		<div id="manual" data-role = "page">
+			
+			<header style="background-color:#606060;">
+			<center><h1 style="margin-bottom:0;"><FONT COLOR="White">How To Use?</FONT></h1></center>
+			</header>
+
+			<div id="" style="background-color:#4eadbe;height:225px;width:295px;float:left;">
+			<h2><a href="#beverageadd" data-role="button" data-rel="dialog" >Add Beverage</a></h2>
+			<h2><a href="#intakeCal" data-role="button" data-rel="dialog" >Calculate Calories</a></h2>
+			<h2><a href="#viewRecord" data-role="button" data-rel="dialog">Table</a></h2>
+			<h2><a href="#DataGraph" data-role="button" data-rel ="dialog">Graph</a></h2>
+			</h2> 
+		  	 </div> 
+		
+			<div id="" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="home" onclick="">Home</a></div>
+				<a href="#about" data-role = "button" data-rel="dialog" data-icon="arrow-r">About</a>				
+		
 		</div>
 
+
+		<div id = "beverageadd" data-role = "page">
+			
+			<header style="background-color:#606060;">
+			<center><h1 style="margin-bottom:0;"><FONT COLOR="White">How To Use?</FONT></h1></center>
+			</header>
+			
+
+			<div id="" style="background-color:#4eadbe;height:225px;width:295px;float:left;">
+			
+			   <h2><a href="#beverageadd" data-role="button" data-rel="dialog"><FONT COLOR="RED">Add Beverage</FONT></a></h2>
+			   <h2><a href="#intakeCal" data-role="button" data-rel="dialog" >Calculate Calories</a></h2>
+			   <h2><a href="#viewRecord" data-role="button" data-rel="dialog">Table</a></h2>
+			   <h2><a href="#DataGraph" data-role="button" data-rel="dialog">Graph</a></h2>	
+			       
+			
+			</div>
+
+			<div id="" style="background-color:#EEEEEE;height:250px;width:295px;float:left;">
+				<center><h2>If the beverage is not on the list,<br>
+					    you can create a new one by adding its<br>
+						 information needed.</h2>
+				  <p><img border="0" src="img/addBeverage.png" width="270" height="150"></p>
+				</center></h2>
+
+			
+			</div>	
+			<div id="" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="home" onclick="">Home</a></div>
+				<a href="#about" data-role = "button" data-rel="dialog" data-icon="arrow-r">About</a>				
+		  </div>
+			
+
 		
+		
+			
+		<div id = "intakeCal" data-role = "page">
+			
+			<header style="background-color:#606060;">
+			<center><h1 style="margin-bottom:0;"><FONT COLOR="White">How To Use?</FONT></h1></center>
+			</header>
+			
 
+			<div id="" style="background-color:#4eadbe;height:225px;width:295px;float:left;">
+			   <h2><a href="#beverageadd" data-role="button" data-rel="dialog" >Add Beverage</a></h2>
+			   <h2><a href="#intakeCal" data-role="button" data-rel="dialog"><FONT COLOR="RED">Calculate Calories</FONT></a></h2>
+			   <h2><a href="#viewRecord" data-role="button" data-rel="dialog">Table</a></h2>
+			   <h2><a href="#DataGraph" data-role="button" data-rel="dialog">Graph</a></h2>	
+			       
+			
+			</div>
 
-	</div>
+			<div id="" style="background-color:#EEEEEE;height:310px;width:295px;float:left;">
+				<center><h2>Provide the required data such as<br> 
+				            number of person who joined the<br>
+				            drinking session, number of beverage <br>
+	 			            they drink, and volume.<br>
+				            Press the button "Calculate".<br>
+				  <p><img border="0" src="img/calculation.png" width="270" height="150"></p>
+				</center></h2>
 
-<script src="scripts/jquery.jqplot.min.js" type="text/javascript"></script>
-	<script src="scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
-	<script src="scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
+			
+			</div>	
+			<div id="" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="home" onclick="">Home</a></div>
+				<a href="#about" data-role = "button" data-rel="dialog" data-icon="arrow-r">About</a>				
+		  </div>
+			
+
+		
+		<div id="viewRecord" data-role="page">
+
+			<header style="background-color:#606060;">
+			<center><h1 style="margin-bottom:0;"><FONT COLOR="White">How To Use?</FONT></h1></center>
+			</header>
+			
+			
+			<div id="" style="background-color:#4eadbe;height:225px;width:295px;float:left;">
+			    <h2><a href="#beverageadd" data-role="button" data-rel="dialog" >Add Beverage</a></h2>
+			    <h2><a href="#intakeCal" data-role="button" data-rel = "dialog">Calculate Calories</a></h2>
+			    <h2><a href="#viewRecord" data-role="button" data-rel = "dialog"><FONT COLOR="red">Table</FONT></a></h2>
+			    <h2><a href="#DataGraph" data-role="button" data-rel = "dialog">Graph</a></h2>	
+			        
+			
+			</div>
+			
+			<div id="" style="background-color:#EEEEEE;height:220px;width:295px;float:left;">
+			<center><h2>The user can see his previous calories to the new one.</h2><br>
+			 <p><img border="0" src="img/oldCalories.png" width="290" height="100"></p>
+			</center>
+			</div>
+			
+			<div id="" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="home" onclick="">Home</a></div>
+				<a href="#about" data-role = "button" data-rel="dialog" data-icon="arrow-r">About</a>						
+</div>
+		
+		<div id="DataGraph" data-role="page">
+			
+			<header style="background-color:#606060;">
+			<center><h1 style="margin-bottom:0;"><FONT COLOR="White">How To Use?</FONT></h1></center>
+			</header>
+			<div id="" style="background-color:#4eadbe;height:225px;width:295px;float:left;">
+			    <h2><a href="#beverageadd" data-role="button" data-rel="dialog" >Add Beverage</a></h2>
+			    <h2><a href="#intakeCal" data-role="button" data-rel ="dialog">Calculate Calories</a></h2>
+			    <h2><a href="#viewRecord" data-role="button" data-rel = "dialog">Table</a></h2>
+			    <h2><a href="#DataGraph" data-role="button" data-rel="dialog"><FONT COLOR="red">Graph</FONT></a></h2>	
+			   
+			
+			</div>
+			
+
+			<div id="" style="background-color:#EEEEEE;height:220px;width:295px;float:left;">
+			<center><h2>Records of the user will be shown in a graph form.<br></center></h2>
+			<p><img border="0" src="img/graph.png" width="290" height="150"></p>			
+			</div>
+			
+			<div id="" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="home" onclick="">Home</a></div>	
+				<a href="#about" data-role = "button" data-rel="dialog" data-icon="arrow-r">About</a>				
+		</div>
 	
-	<script src="scripts/app.js" type="text/javascript"></script>
+		<div id="about" data-role="page">
+			
+			
+			<header style="background-color:#606060 ;">
+			<center><h1 style="margin-bottom:0;"><FONT COLOR="White">About</FONT></h1></center>
+			</header>
+			
+
+			<div id="" style="background-color:#4eadbe;height:350px;width:295px;float:left;">
+			  
+				<center><h2 style = "color: red">CALORIE INTAKE REMINDER APPLICATION</h2></center>
+				<center><h3 style="color:white">is a simple android application that lets the<br>
+					    user be reminded of his calorie intake<br>
+					    For now, this app is<br>
+					    limited for beverage only, but for future use<br>
+					    this app can be developed further to calculate other foods.</h3>
+				</center>
+				<center><h2 style = "color: blue">Does drinking cold water burn calories?</h2></center>
+				<center><h3 style = "color:white">Our bodies burn calories by warming the ice<br>
+					    cold water to our internal body temperature.<br>
+					    Roger Clemens,DrPH (doctor of public health) in<br>
+					    nutrition and biological chemistry, and associate<br>
+					    director of regulatory science at the USC School of Pharmacy.
+					</h3>
+			
+		  	 </div> 
+				
+			<div id="" style="background-color:transparent;clear:both;text-align:center;">
+				<a href="index.html" data-role="button" data-icon="home" onclick="">Home</a></div>
+				<a href="#manual" data-role = "button" data-rel="dialog" data-icon="arrow-r">Manual</a>
+		
+		</div>
+		
 	
-	<script src="scripts/visualize.jQuery.js" type="text/javascript"></script>
-	<script src="scripts/example.js" type="text/javascript"></script>
+      
     </body>
+
+
+	<script src="scripts/jqplot.pieRenderer.min.js" type="text/javascript"></script>
+        <script src="js/index.js" type="text/javascript"></script>
+ 	<script src="scripts/visualize.jQuery.js" type="text/javascript"></script>	
+       	<script src="scripts/example.js" type="text/javascript"></script>
+
+	<script src="scripts/app.js" type="text/javascript"></script>
 </html>

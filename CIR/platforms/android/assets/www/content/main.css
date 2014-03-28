@@ -2,6 +2,16 @@ body {
 	background: #EEE;
 	margin: 0 auto;
 	width: 0 auto;
+	text-transform: none;
+}
+
+h1{
+	color: #fff;
+ 	font-family: "Monaco", Courier New, monospace;
+  	font-size: 18px;
+  	font-weight: normal;
+  	line-height: 20px;
+  	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 div 
@@ -14,12 +24,115 @@ div.float {
 	float: left;
 }
 
-table 
+
+.ui-input-text    
 {
-	width: 100px;
+    width: 93% !important;
+
 }
 
-td 
-{
-	width: 100px;
+.header {
+	position:  absolute;
+ 	text-align: center;
+ 	background: #666666; /* for non-css3 browsers */
+	background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#666666), color-stop(.6,#333));
+	color: #FFFFFF;
+	top: 0px; 
+	height: 40px;
+	width: 100%;
+	border-bottom: solid 1px #444444;
+}
+
+.header > h1 {
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.header > .nav {
+	position: absolute;
+	left: 12px;
+	height:100%;
+	padding-top: 12px;
+	padding-right: 12px;
+	border-right: solid 1px #333333;
+}
+
+.header a { 
+	text-decoration:none;
+	color: #FFFFFF;
+}
+
+li .line1 {
+	font-size: 16px;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:10px;
+	padding-bottom:0px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+li .line2 {
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	color: #666666;
+}
+
+li .bubble {
+	clear:both;
+	position: absolute;
+	right: 12px;
+    background-color: #ECEFF2;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+	font-size:14px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin: 0px;
+	margin-right: -3px;
+	margin-top: -43px;
+	text-align: center;
+}
+
+#wrapper {
+	position: absolute; 
+	top: 82px; 
+	bottom: 0px;
+	width: 100%;
+	overflow: auto;
+}
+
+#beverageDetails {
+	padding: 8px;
+	padding-bottom: 0px;
+}
+
+.footer, .push {
+    height: 4em;
+    background-color: #fb7b4b;
+	
+    }
+
+pre {
+  margin: 20px;
+  padding: 20px;
+  color: #fff;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+  background-color: rgba(0, 0, 0, 0.1);
+  font-family: "Monaco", Courier New, monospace;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 20px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+text-align:left;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 255, 255, 0.25);
 }

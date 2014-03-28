@@ -18,71 +18,39 @@ RocknCoder.Pages.Events = function () {
 		"pageinit", RocknCoder.hideAddressBar);
 } ();
 
-RocknCoder.Pages.manageBarChart = function () {
+
+RocknCoder.Pages.managePieChart = function () {
 	var pageshow = function () {
 			updateChart();
-			$("#refreshBarChart").click(function(){
+			
+
+			$("#adviceLink").click(function(){
 				updateChart();
+			
+				
 			});
 		},
 		pagehide = function () {
-			$("#refreshBarChart").unbind('click');
+			$("#adviceLink").unbind('click');
 		},
 		updateChart= function(){
-		
-		members = $("#members").val();
-			quantity = $("#quantity").val();
-			volumeUnit = $("#volumeUnit").val();
-			calorieVolumeUnit = $("#calorieVolumeUnit").val();
-			caloriePerVolume = $("#caloriePerVolume").val();
-			percentage = $("#percentage").val();
-			
-			if(volumeUnit==2){
-				var volume=( $("#volume").val() * 1000);
-			}
-			else if(volumeUnit==3){
-				volume=($("#volume").val()  * 30);
-			}
-			else{
-				volume= $("#volume").val();
+			var sliceA = parseInt($("#unBurnCalorie").val(),10),
+				sliceB = parseInt($("#burntCalorie").val(),10);
 				
-			}
-			
-			if(calorieVolumeUnit==2){
-				calorieMl = ($("#calorieMl").val() * 1000);
-			}
-			else if(calorieVolumeUnit==3){
-				calorieMl=($("#calorieMl").val() * 30);
-			}
-			else{
-				calorieMl=$("#calorieMl").val();
-			}
-			
-			totalCalorie = parseInt( ((caloriePerVolume/calorieMl) * ((quantity*volume)/members)),10 );
-			burntCalorie = parseInt( (totalCalorie - ((totalCalorie*percentage)/100)) ,10);
-			
-			var barA = parseInt( ((caloriePerVolume/calorieMl) * ((quantity*volume)/members)),10 ),
-				barB = parseInt( (totalCalorie - ((totalCalorie*percentage)/100)) ,10);
-
-
-			showChart(barA, barB);
+			showChart(sliceA, sliceB);
 		},
-		showChart = function(barA, barB){
-			$.jqplot('barChart', [[[barA,"Old Calorie"], [barB,"New Calorie"]]], {
-				seriesDefaults:{
-					renderer:$.jqplot.BarRenderer,
-					shadowAngle: 135,
-					rendererOptions: {
-						barDirection: 'horizontal'
+		showChart = function(sliceA, sliceB){
+			var plot2 = $.jqplot('pieChart', [[['a',sliceA],['b',sliceB]]], {
+					grid: {
+						drawBorder: false,
+						shadow: false
 					},
-					pointLabels: {show: true, formatString: '%d'}
-				},
-				axes: {
-					yaxis: {
-						renderer: $.jqplot.CategoryAxisRenderer
-					}
-				}
-			}).replot({clear: true, resetAxes:true});
+					seriesDefaults:{
+						renderer:$.jqplot.PieRenderer,
+						trendline:{ show: true }
+					},
+				legend:{ show: false }
+			});
 		};
 	return {
 		pageshow: pageshow,
